@@ -7,7 +7,7 @@ class ResponseEngine:
 
     def __init__(
         self,
-        quarantine_directory="/home/kali/rdrs/quarantine"
+        quarantine_directory="/tmp/quarantine"
     ):
         self.quarantine_directory = Path(
             quarantine_directory
