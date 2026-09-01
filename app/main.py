@@ -56,7 +56,7 @@ app.mount("/dashboard/static", StaticFiles(directory="app/dashboard/static"), na
 # ==========================================
 
 detector = RansomwareDetector(
-    "/home/kali/rdrs/test_data"
+    "/tmp/test_data"
 )
 
 risk_engine = RiskEngine()
@@ -534,7 +534,7 @@ def api_status():
         "system": "RDRS",
         "status": "online",
         "version": "1.0.0",
-        "monitoring_directory": "/home/kali/rdrs/test_data",
+        "monitoring_directory": "/tmp/test_data",
         "statistics": {
             "total_incidents": total_incidents,
             "open": open_incidents,
