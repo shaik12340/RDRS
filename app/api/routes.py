@@ -12,7 +12,7 @@ from app.database.database import add_incident, load_incidents
 
 router = APIRouter(prefix="/api", tags=["RDRS API"])
 
-UPLOAD_DIR = Path("/home/kali/rdrs/uploads")
+UPLOAD_DIR = Path("/tmp/uploads")
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
 TEST_DIR = Path("/home/kali/rdrs/test_data")
