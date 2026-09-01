@@ -1,0 +1,29 @@
+{
+    "incident_id": "RDRS-20260821041527",
+    "timestamp": "2026-08-21T04:15:27.209440",
+    "status": "CONTAINED",
+    "severity": "CRITICAL",
+    "risk_score": 100,
+    "risk_level": "CRITICAL",
+    "event_type": "MODIFIED",
+    "file": {
+        "path": "test_data/document.txt",
+        "sha256": "abc123"
+    },
+    "risk_reasons": [
+        "Rapid file activity detected"
+    ],
+    "response": {
+        "status": "quarantined"
+    },
+    "status_history": [
+        {
+            "from": "OPEN",
+            "to": "INVESTIGATING"
+        },
+        {
+            "from": "INVESTIGATING",
+            "to": "CONTAINED"
+        }
+    ]
+}

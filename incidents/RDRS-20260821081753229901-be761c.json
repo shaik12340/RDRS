@@ -1,0 +1,20 @@
+{
+    "incident_id": "RDRS-20260821081753229901-be761c",
+    "timestamp": "2026-08-21T08:17:53.229901",
+    "status": "CONTAINED",
+    "severity": "HIGH",
+    "risk_score": 65,
+    "risk_level": "HIGH",
+    "event_type": "CREATED",
+    "file": {
+        "path": "test_data/rapid_test_6.txt",
+        "sha256": "130ea1fe77267bc05085e95105f0ff6c5d51090d3e38958f19444dcc990e37d8"
+    },
+    "risk_reasons": [
+        "6 file(s) modified",
+        "Rapid file activity detected"
+    ],
+    "response": {
+        "status": "quarantined"
+    }
+}

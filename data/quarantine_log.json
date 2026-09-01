@@ -1,0 +1,13 @@
+[
+    {
+        "incident_id": "RDRS-20260830-001",
+        "original_path": "/home/kali/rdrs/test_data/phase9_high_test.encrypted",
+        "quarantine_path": "quarantine/RDRS-20260830-001_phase9_high_test.encrypted",
+        "sha256": "3ecf90f7d4c8dafb8570662f6f2e0d64a8544f1dbbf93914ce18d41b015b3b8e",
+        "risk_score": 60,
+        "timestamp": "2026-08-30T09:55:17",
+        "status": "RESTORED",
+        "restored_at": "2026-08-30T10:24:37",
+        "restored_sha256": "3ecf90f7d4c8dafb8570662f6f2e0d64a8544f1dbbf93914ce18d41b015b3b8e"
+    }
+]

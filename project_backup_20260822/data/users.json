@@ -1,0 +1,9 @@
+[
+    {
+        "email": "shaikriyan12340@gmail.com",
+        "password_hash": "$2b$12$RQMXEeqX5Hgd8.eDqtY5oOGGzOMEHSCQgn/DzWeIqEMnCBHwbtO7y",
+        "reset_otp_hash": "308284",
+        "reset_otp_expires_at": "2026-08-21T19:20:08.036899+00:00",
+        "reset_otp_verified": false
+    }
+]

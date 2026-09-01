@@ -1,0 +1,354 @@
+[
+    {
+        "incident_id": "RDRS-20260821075852-16cf40",
+        "timestamp": "2026-08-21T07:58:52.714745",
+        "status": "CONTAINED",
+        "severity": "CRITICAL",
+        "risk_score": 100,
+        "risk_level": "CRITICAL",
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "b45b50790d904ca88d813e78c09fc1ac_critical_test.encrypted",
+            "path": "/home/kali/rdrs/uploads/b45b50790d904ca88d813e78c09fc1ac_critical_test.encrypted",
+            "size": 119,
+            "sha256": "582ad86ec37d956207b07f5f819e8943f9fece66516271ceb46145e06d42c50f"
+        },
+        "risk_reasons": [
+            "Suspicious filename indicator",
+            "Suspicious ransomware-like extension",
+            "Ransomware-related text indicator"
+        ],
+        "analysis": {
+            "entropy": 4.259,
+            "suspicious": true
+        },
+        "response": {
+            "status": "quarantined"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821075846-66b82c",
+        "timestamp": "2026-08-21T07:58:46.490392",
+        "status": "CONTAINED",
+        "severity": "HIGH",
+        "risk_score": 75,
+        "risk_level": "HIGH",
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "b320323251eb4c6d9aba9bdd2c0e39ab_high_test.encrypted",
+            "path": "/home/kali/rdrs/uploads/b320323251eb4c6d9aba9bdd2c0e39ab_high_test.encrypted",
+            "size": 32,
+            "sha256": "e0c9733462ee277c3aff833609ebe12a5d07c4199ee3ee4d95d22093403a70b1"
+        },
+        "risk_reasons": [
+            "Suspicious filename indicator",
+            "Suspicious ransomware-like extension",
+            "Ransomware-related text indicator"
+        ],
+        "analysis": {
+            "entropy": 4.078,
+            "suspicious": true
+        },
+        "response": {
+            "status": "quarantined"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821075841-b3cdcc",
+        "timestamp": "2026-08-21T07:58:41.079532",
+        "status": "OPEN",
+        "severity": "MEDIUM",
+        "risk_score": 40,
+        "risk_level": "MEDIUM",
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "374471ca31354d96a3b66d1d627aee97_medium_ransom.txt",
+            "path": "/home/kali/rdrs/uploads/374471ca31354d96a3b66d1d627aee97_medium_ransom.txt",
+            "size": 8,
+            "sha256": "61d520ccb74288c96bc1a2b20ea1c0d5a704776dd0164a396efec3ea7040349d"
+        },
+        "risk_reasons": [
+            "Suspicious filename indicator",
+            "Ransomware-related text indicator"
+        ],
+        "analysis": {
+            "entropy": 2.75,
+            "suspicious": true
+        },
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821075831-e2743a",
+        "timestamp": "2026-08-21T07:58:31.410640",
+        "status": "OPEN",
+        "severity": "LOW",
+        "risk_score": 0,
+        "risk_level": "LOW",
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "2773f74a4ca84581945210fd9c958ad2_low_test.txt",
+            "path": "/home/kali/rdrs/uploads/2773f74a4ca84581945210fd9c958ad2_low_test.txt",
+            "size": 32,
+            "sha256": "3226741d265bdee173e3eaf1502a8d8ff5e9802ef0f9a44c2b06f3d165582b04"
+        },
+        "risk_reasons": [],
+        "analysis": {
+            "entropy": 3.781,
+            "suspicious": false
+        },
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-DEMO-QUARANTINED",
+        "timestamp": "2026-08-21T07:58:52.714745",
+        "status": "CONTAINED",
+        "severity": "LOW",
+        "risk_score": 10,
+        "risk_level": "LOW",
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "quarantine_demo.txt",
+            "path": "/home/kali/rdrs/quarantine/quarantine_demo.txt",
+            "size": 32,
+            "sha256": "demo-quarantine-sha256"
+        },
+        "analysis": {
+            "entropy": 3.7,
+            "suspicious": false
+        },
+        "risk_reasons": [
+            "File isolated for demonstration"
+        ],
+        "response": {
+            "status": "quarantined"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821081424",
+        "timestamp": "2026-08-21T08:14:24.871091",
+        "severity": "LOW",
+        "risk_score": 10,
+        "risk_level": "LOW",
+        "message": "Normal file activity",
+        "changed_files": [
+            {
+                "path": "test_data/realtime_test.txt",
+                "sha256": "f797a32766df043c332229224446779d515ee15dbb139b0557cec98e3a25efaa"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821081424",
+        "timestamp": "2026-08-21T08:14:24.872294",
+        "severity": "LOW",
+        "risk_score": 10,
+        "risk_level": "LOW",
+        "message": "Normal file activity",
+        "changed_files": [
+            {
+                "path": "/home/kali/rdrs/test_data/realtime_test.txt",
+                "sha256": "f797a32766df043c332229224446779d515ee15dbb139b0557cec98e3a25efaa"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821081751",
+        "timestamp": "2026-08-21T08:17:51.506915",
+        "severity": "LOW",
+        "risk_score": 10,
+        "risk_level": "LOW",
+        "message": "Normal file activity",
+        "changed_files": [
+            {
+                "path": "test_data/rapid_test_1.txt",
+                "sha256": "81805cdb4dfcfbfaef2a29db5fe2b3761589724bc5854363c5b291d1097bc2bd"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821081751",
+        "timestamp": "2026-08-21T08:17:51.811803",
+        "severity": "LOW",
+        "risk_score": 20,
+        "risk_level": "LOW",
+        "message": "Normal file activity",
+        "changed_files": [
+            {
+                "path": "test_data/rapid_test_2.txt",
+                "sha256": "0663ec3ff103b9c0fc65ccb96b800fd068e13f9d12f43072ab5e67046572b678"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821081752",
+        "timestamp": "2026-08-21T08:17:52.114742",
+        "severity": "MEDIUM",
+        "risk_score": 30,
+        "risk_level": "MEDIUM",
+        "message": "Unusual file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/rapid_test_3.txt",
+                "sha256": "9f2a099aa8c3df4f3b7ae9502878ca1f73e1c7bb4bf503a4d3745bbf34c41121"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821081752",
+        "timestamp": "2026-08-21T08:17:52.419929",
+        "severity": "MEDIUM",
+        "risk_score": 40,
+        "risk_level": "MEDIUM",
+        "message": "Unusual file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/rapid_test_4.txt",
+                "sha256": "280d1cf51fead92401bfd2d4de5b7ad1e96c9d298855120336be9f55f8cb5e80"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821081752",
+        "timestamp": "2026-08-21T08:17:52.725025",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "message": "Suspicious file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/rapid_test_5.txt",
+                "sha256": "05475ef54851913cfd3b036ce4604fb7ac4bac3e538042fa28cde99c495d29b7"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821081753",
+        "timestamp": "2026-08-21T08:17:53.227911",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "message": "Suspicious file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/rapid_test_6.txt",
+                "sha256": "130ea1fe77267bc05085e95105f0ff6c5d51090d3e38958f19444dcc990e37d8"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821082757",
+        "timestamp": "2026-08-21T08:27:57.976066",
+        "severity": "LOW",
+        "risk_score": 10,
+        "risk_level": "LOW",
+        "message": "Normal file activity",
+        "changed_files": [
+            {
+                "path": "test_data/demo_rapid_1.txt",
+                "sha256": "0b372438a09111a28e7aa8572e726c97681bf4a9e2b5784234903b4fd92e54bc"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821082758",
+        "timestamp": "2026-08-21T08:27:58.278363",
+        "severity": "LOW",
+        "risk_score": 20,
+        "risk_level": "LOW",
+        "message": "Normal file activity",
+        "changed_files": [
+            {
+                "path": "test_data/demo_rapid_2.txt",
+                "sha256": "4a7eddbd5a49642705116c5520a422587a69a05b8f8e0b8dc0cf6cc2117d3aff"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821082758",
+        "timestamp": "2026-08-21T08:27:58.580872",
+        "severity": "MEDIUM",
+        "risk_score": 30,
+        "risk_level": "MEDIUM",
+        "message": "Unusual file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/demo_rapid_3.txt",
+                "sha256": "5b0a60b1b4dadee61408969204163ffc1b87efe67ac99318744ff3517c89f520"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821082758",
+        "timestamp": "2026-08-21T08:27:58.885413",
+        "severity": "MEDIUM",
+        "risk_score": 40,
+        "risk_level": "MEDIUM",
+        "message": "Unusual file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/demo_rapid_4.txt",
+                "sha256": "88c2e54da012cd6121428d24211221dda807a1fabf3975c5383ce57a26f7de2d"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821082759",
+        "timestamp": "2026-08-21T08:27:59.190258",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "message": "Suspicious file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/demo_rapid_5.txt",
+                "sha256": "78186c9e5f559aa072ff2e7b1c7ee48b9189041c4636ff34ecc7e9f4d3df9d47"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821082759",
+        "timestamp": "2026-08-21T08:27:59.693311",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "message": "Suspicious file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/demo_rapid_6.txt",
+                "sha256": "18dd961104fab054f61d7e2d06462dc95394c51476d88c4470f0cf8dba49c02c"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    }
+]

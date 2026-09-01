@@ -1,0 +1,73 @@
+{
+    "incident_id": "RDRS-20260821042500",
+    "timestamp": "2026-08-21T04:25:00.273130",
+    "status": "CLOSED",
+    "severity": "LOW",
+    "risk_score": 10,
+    "risk_level": "LOW",
+    "event_type": "MODIFIED",
+    "file": {
+        "path": "/home/kali/rdrs/test_data/document.txt",
+        "sha256": "50e8f9da539675f6d0f58c992027f6a3e12bb8c09aa2a49789896371bafd716e"
+    },
+    "risk_reasons": [
+        "1 file(s) modified"
+    ],
+    "response": {
+        "status": "no_action"
+    },
+    "status_history": [
+        {
+            "from": "OPEN",
+            "to": "INVESTIGATING"
+        },
+        {
+            "from": "INVESTIGATING",
+            "to": "INVESTIGATING"
+        },
+        {
+            "from": "INVESTIGATING",
+            "to": "INVESTIGATING"
+        },
+        {
+            "from": "INVESTIGATING",
+            "to": "CONTAINED"
+        },
+        {
+            "from": "CONTAINED",
+            "to": "INVESTIGATING"
+        },
+        {
+            "from": "INVESTIGATING",
+            "to": "INVESTIGATING"
+        },
+        {
+            "from": "INVESTIGATING",
+            "to": "INVESTIGATING"
+        },
+        {
+            "from": "INVESTIGATING",
+            "to": "INVESTIGATING"
+        },
+        {
+            "from": "INVESTIGATING",
+            "to": "INVESTIGATING"
+        },
+        {
+            "from": "INVESTIGATING",
+            "to": "INVESTIGATING"
+        },
+        {
+            "from": "INVESTIGATING",
+            "to": "INVESTIGATING"
+        },
+        {
+            "from": "INVESTIGATING",
+            "to": "CONTAINED"
+        },
+        {
+            "from": "CONTAINED",
+            "to": "CLOSED"
+        }
+    ]
+}

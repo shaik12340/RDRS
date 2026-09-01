@@ -1,0 +1,20 @@
+{
+    "incident_id": "RDRS-20260821072633",
+    "timestamp": "2026-08-21T07:26:33.606144",
+    "status": "CONTAINED",
+    "severity": "HIGH",
+    "risk_score": 65,
+    "risk_level": "HIGH",
+    "event_type": "CREATED",
+    "file": {
+        "path": "/home/kali/rdrs/test_data/status_test_10.txt",
+        "sha256": "e97ab2d87771684cba26b638895457be56e49cff5d605631c8b3d0824845aaa6"
+    },
+    "risk_reasons": [
+        "10 file(s) modified",
+        "Rapid file activity detected"
+    ],
+    "response": {
+        "status": "quarantined"
+    }
+}

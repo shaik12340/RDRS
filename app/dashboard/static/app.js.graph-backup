@@ -1,0 +1,160 @@
+async function loadStatus(){
+
+const res=await fetch("/api/status");
+const data=await res.json();
+
+document.getElementById("health").innerText="100%";
+document.getElementById("risk").innerText=data.statistics.critical;
+document.getElementById("quarantine").innerText=data.statistics.quarantined;
+document.getElementById("incidents").innerText=data.statistics.total_incidents;
+
+updateIncidentChart(data);
+
+}
+
+
+
+let incidentChart = null;
+
+function updateIncidentChart(data) {
+
+    const canvas = document.getElementById("incidentChart");
+
+    if (!canvas) {
+        return;
+    }
+
+    const statistics = data.statistics || {};
+
+    const total = Number(statistics.total_incidents || 0);
+    const critical = Number(statistics.critical || 0);
+    const quarantined = Number(statistics.quarantined || 0);
+
+    const other = Math.max(
+        total - critical - quarantined,
+        0
+    );
+
+    if (incidentChart) {
+        incidentChart.destroy();
+    }
+
+    incidentChart = new Chart(canvas, {
+
+        type: "doughnut",
+
+        data: {
+
+            labels: [
+                "Critical",
+                "Quarantined",
+                "Other Incidents"
+            ],
+
+            datasets: [{
+
+                data: [
+                    critical,
+                    quarantined,
+                    other
+                ],
+
+                backgroundColor: [
+                    "#ef4444",
+                    "#a855f7",
+                    "#3b82f6"
+                ],
+
+                borderColor: "#0f172a",
+
+                borderWidth: 4,
+
+                hoverOffset: 8
+            }]
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            cutout: "65%",
+
+            plugins: {
+
+                legend: {
+
+                    position: "bottom",
+
+                    labels: {
+
+                        color: "#cbd5e1",
+
+                        padding: 18,
+
+                        font: {
+                            size: 13
+                        }
+                    }
+                },
+
+                tooltip: {
+
+                    callbacks: {
+
+                        label: function(context) {
+
+                            const value = context.raw || 0;
+
+                            return " " + context.label + ": " + value;
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+
+async function loadIncidents(){
+
+const res=await fetch("/api/incidents");
+const data=await res.json();
+
+let html="";
+
+if(data.length===0){
+
+html="<tr><td colspan='3'>No Incidents</td></tr>";
+
+}else{
+
+data.forEach(function(i){
+
+html+=`
+<tr>
+<td>${i.incident_id}</td>
+<td>${i.risk_level}</td>
+<td>${i.status}</td>
+</tr>
+`;
+
+});
+
+}
+
+document.getElementById("incidentTable").innerHTML=html;
+
+}
+
+async function refresh(){
+
+await loadStatus();
+await loadIncidents();
+
+}
+
+refresh();
+
+setInterval(refresh,5000);

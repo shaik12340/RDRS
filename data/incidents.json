@@ -1,0 +1,103 @@
+[
+    {
+        "incident_id": "RDRS-20260901033416-607f44",
+        "timestamp": "2026-09-01T03:34:16.862804",
+        "status": "OPEN",
+        "severity": "LOW",
+        "risk_score": 0,
+        "risk_level": "LOW",
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "d3d811ae8e8d4530899db5b260fc3a99_normal1.txt",
+            "path": "/home/kali/rdrs/uploads/d3d811ae8e8d4530899db5b260fc3a99_normal1.txt",
+            "size": 27,
+            "sha256": "390f5884d70204af7d85eec8119f541d84d81c2067bd85936dc7dd6c0aabc56f"
+        },
+        "risk_reasons": [],
+        "analysis": {
+            "entropy": 4.014,
+            "suspicious": false
+        },
+        "response": {
+            "status": "no_action",
+            "message": "No containment required for LOW risk"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260901033416-84bca1",
+        "timestamp": "2026-09-01T03:34:16.799236",
+        "status": "OPEN",
+        "severity": "LOW",
+        "risk_score": 0,
+        "risk_level": "LOW",
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "cb10dd2389d44bdeb96da619a6ea2958_my_test2.txt",
+            "path": "/home/kali/rdrs/uploads/cb10dd2389d44bdeb96da619a6ea2958_my_test2.txt",
+            "size": 18,
+            "sha256": "6e59e98c3c6654a479a44921e9e222a892d5a0914cc123feec5a6d6ad8d40705"
+        },
+        "risk_reasons": [],
+        "analysis": {
+            "entropy": 3.503,
+            "suspicious": false
+        },
+        "response": {
+            "status": "no_action",
+            "message": "No containment required for LOW risk"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260901033416-29ac8f",
+        "timestamp": "2026-09-01T03:34:16.748595",
+        "status": "OPEN",
+        "severity": "LOW",
+        "risk_score": 0,
+        "risk_level": "LOW",
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "3f7be419d6d043318d04256282ddd4c5_my_test.txt",
+            "path": "/home/kali/rdrs/uploads/3f7be419d6d043318d04256282ddd4c5_my_test.txt",
+            "size": 25,
+            "sha256": "4fb882703ecb0ce3aa29bd1d7190dd19028b99ec956fcbc7e1a496816d9294e6"
+        },
+        "risk_reasons": [],
+        "analysis": {
+            "entropy": 3.974,
+            "suspicious": false
+        },
+        "response": {
+            "status": "no_action",
+            "message": "No containment required for LOW risk"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260831145051-9cfd51",
+        "timestamp": "2026-08-31T14:50:51.617615",
+        "status": "CONTAINED",
+        "severity": "CRITICAL",
+        "risk_score": 90,
+        "risk_level": "CRITICAL",
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "092fc1beabc5478c8eb3617697578f34_critical_test.encrypted",
+            "path": "/home/kali/rdrs/quarantine/20260901033416_092fc1beabc5478c8eb3617697578f34_critical_test.encrypted",
+            "size": 104,
+            "sha256": "609dacdc2cdd3561136d51e3ee35295289f91da8dd54cbd3d10ac7c90217b20a"
+        },
+        "risk_reasons": [
+            "Suspicious filename indicator",
+            "Suspicious ransomware-like extension",
+            "Ransomware-related text indicator"
+        ],
+        "analysis": {
+            "entropy": 4.609,
+            "suspicious": true
+        },
+        "response": {
+            "status": "quarantined",
+            "original_path": "/home/kali/rdrs/uploads/092fc1beabc5478c8eb3617697578f34_critical_test.encrypted",
+            "quarantine_path": "/home/kali/rdrs/quarantine/20260901033416_092fc1beabc5478c8eb3617697578f34_critical_test.encrypted"
+        }
+    }
+]

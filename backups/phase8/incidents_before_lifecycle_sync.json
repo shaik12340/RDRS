@@ -1,0 +1,87 @@
+[
+    {
+        "incident_id": "RDRS-20260828141221-108ce5",
+        "timestamp": "2026-08-28T14:12:21.573175",
+        "status": "OPEN",
+        "severity": "LOW",
+        "risk_score": 15,
+        "risk_level": "LOW",
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "d650adc65450435db5280c9b53c1d1c3_road map rdrs final.txt",
+            "path": "/home/kali/rdrs/uploads/d650adc65450435db5280c9b53c1d1c3_road map rdrs final.txt",
+            "size": 10352,
+            "sha256": "5032bb9ab747b954fb991f5bdc64d5ac5575bffd3d2e18d344df1e3d6cb2fa7b"
+        },
+        "risk_reasons": [
+            "Ransomware-related text indicator"
+        ],
+        "analysis": {
+            "entropy": 5.316,
+            "suspicious": true
+        },
+        "response": {
+            "status": "no_action",
+            "message": "No containment required for LOW risk"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260828131330-0281fe",
+        "timestamp": "2026-08-28T13:13:30.027703",
+        "status": "OPEN",
+        "severity": "LOW",
+        "risk_score": 0,
+        "risk_level": "LOW",
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "09f68f2414f041409f6f05d27d2d2136_config.yaml",
+            "path": "/home/kali/rdrs/uploads/09f68f2414f041409f6f05d27d2d2136_config.yaml",
+            "size": 585,
+            "sha256": "23f808158106a28f889216842240c39aecd71a506dd8372242b31afabd479871"
+        },
+        "risk_reasons": [],
+        "analysis": {
+            "entropy": 4.715,
+            "suspicious": false
+        },
+        "response": {
+            "status": "no_action",
+            "message": "No containment required for LOW risk"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260828124336-d5a30a",
+        "timestamp": "2026-08-28T12:43:36.722135",
+        "status": "CLOSED",
+        "severity": "CRITICAL",
+        "risk_score": 90,
+        "risk_level": "CRITICAL",
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "53d461a40ba0435db96be030890ccec6_web_ransomware_test.encrypted",
+            "path": "/home/kali/rdrs/quarantine/20260828124336_53d461a40ba0435db96be030890ccec6_web_ransomware_test.encrypted",
+            "size": 104,
+            "sha256": "609dacdc2cdd3561136d51e3ee35295289f91da8dd54cbd3d10ac7c90217b20a"
+        },
+        "risk_reasons": [
+            "Suspicious filename indicator",
+            "Suspicious ransomware-like extension",
+            "Ransomware-related text indicator"
+        ],
+        "analysis": {
+            "entropy": 4.609,
+            "suspicious": true
+        },
+        "response": {
+            "status": "quarantined",
+            "original_path": "/home/kali/rdrs/uploads/53d461a40ba0435db96be030890ccec6_web_ransomware_test.encrypted",
+            "quarantine_path": "/home/kali/rdrs/quarantine/20260828124336_53d461a40ba0435db96be030890ccec6_web_ransomware_test.encrypted"
+        },
+        "status_history": [
+            {
+                "from": "CONTAINED",
+                "to": "CLOSED"
+            }
+        ]
+    }
+]

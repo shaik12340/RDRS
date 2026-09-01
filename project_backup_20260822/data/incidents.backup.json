@@ -1,0 +1,86 @@
+[
+    {
+        "incident_id": "RDRS-20260822042303603017-cf767b",
+        "timestamp": "2026-08-22T04:23:03.603017",
+        "status": "OPEN",
+        "severity": "MEDIUM",
+        "risk_score": 40,
+        "risk_level": "MEDIUM",
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "duplicate-test.txt",
+            "path": "duplicate-test.txt",
+            "sha256": "7899110d4630daf7e48f7a0ef571ee6a099510dfef5b7ec85a6b90e8a46aa37f"
+        },
+        "risk_reasons": [
+            "Ransomware-related text indicator"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260822042110863516-2811d3",
+        "timestamp": "2026-08-22T04:21:10.863516",
+        "status": "OPEN",
+        "severity": "MEDIUM",
+        "risk_score": 40,
+        "risk_level": "MEDIUM",
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "ransomware_test.txt",
+            "path": "ransomware_test.txt",
+            "sha256": "b7fb0c7df69a91af17bf35e135a3b4ee8d7be721c9648c04168ff155ca51d3ca"
+        },
+        "risk_reasons": [
+            "Ransomware-related text indicator"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260822041921105335-3c2e43",
+        "timestamp": "2026-08-22T04:19:21.105335",
+        "status": "OPEN",
+        "severity": "CRITICAL",
+        "risk_score": 100,
+        "risk_level": "CRITICAL",
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "ransomware_web_test.encrypted",
+            "path": "ransomware_web_test.encrypted",
+            "sha256": "f6bc9bdbe7b3f6b4bb6303b1905bcdc717b444204f1194d5d5bb7b1c84363bd7"
+        },
+        "risk_reasons": [
+            "Suspicious filename indicator",
+            "Suspicious ransomware-like extension",
+            "Ransomware-related text indicator"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260822041655832811-e0452e",
+        "timestamp": "2026-08-22T04:16:55.832811",
+        "status": "OPEN",
+        "severity": "CRITICAL",
+        "risk_score": 90,
+        "risk_level": "CRITICAL",
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "web_ransomware_test.encrypted",
+            "path": "web_ransomware_test.encrypted",
+            "sha256": "609dacdc2cdd3561136d51e3ee35295289f91da8dd54cbd3d10ac7c90217b20a"
+        },
+        "risk_reasons": [
+            "Suspicious filename indicator",
+            "Suspicious ransomware-like extension",
+            "Ransomware-related text indicator"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    }
+]

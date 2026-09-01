@@ -1,0 +1,1898 @@
+[
+    {
+        "incident_id": "RDRS-20260821103401256464-f514ed",
+        "timestamp": "2026-08-21T10:34:01.256464",
+        "status": "CONTAINED",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "event_type": "CREATED",
+        "file": {
+            "name": "verify_6.txt",
+            "path": "test_data/verify_6.txt",
+            "sha256": "b0f8929c5f369dbc8e13edef321176ab885fcd5b5944b178a4c879235f705d7c"
+        },
+        "risk_reasons": [
+            "6 file(s) modified",
+            "Rapid file activity detected"
+        ],
+        "response": {
+            "status": "quarantined"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821103400738246-261a5e",
+        "timestamp": "2026-08-21T10:34:00.738246",
+        "status": "CONTAINED",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "event_type": "CREATED",
+        "file": {
+            "name": "verify_5.txt",
+            "path": "test_data/verify_5.txt",
+            "sha256": "85a135b6bd37cf9082e8ecda7acd1d81fb2df4c9f7f1aefe4e2eb561473ad575"
+        },
+        "risk_reasons": [
+            "5 file(s) modified",
+            "Rapid file activity detected"
+        ],
+        "response": {
+            "status": "quarantined"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821103400427415-67cc54",
+        "timestamp": "2026-08-21T10:34:00.427415",
+        "status": "OPEN",
+        "severity": "MEDIUM",
+        "risk_score": 40,
+        "risk_level": "MEDIUM",
+        "event_type": "CREATED",
+        "file": {
+            "name": "verify_4.txt",
+            "path": "test_data/verify_4.txt",
+            "sha256": "effac37af04a3772133df29f50b3ce0e1b66426074110ed8343587afda9b3db9"
+        },
+        "risk_reasons": [
+            "4 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821103400121696-ed9f9a",
+        "timestamp": "2026-08-21T10:34:00.121696",
+        "status": "OPEN",
+        "severity": "MEDIUM",
+        "risk_score": 30,
+        "risk_level": "MEDIUM",
+        "event_type": "CREATED",
+        "file": {
+            "name": "verify_3.txt",
+            "path": "test_data/verify_3.txt",
+            "sha256": "140776bbfd4bc095501e92181a21ff10a432738c6d0b1270ad1e36e87b4e7588"
+        },
+        "risk_reasons": [
+            "3 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821103359819351-6c5743",
+        "timestamp": "2026-08-21T10:33:59.819351",
+        "status": "OPEN",
+        "severity": "LOW",
+        "risk_score": 20,
+        "risk_level": "LOW",
+        "event_type": "CREATED",
+        "file": {
+            "name": "verify_2.txt",
+            "path": "test_data/verify_2.txt",
+            "sha256": "56dbcbe1ed1ce15a15e2a18224a9aa5cde5e6860ff5c636efba27539f15fa1a9"
+        },
+        "risk_reasons": [
+            "2 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821103359503923-571ff5",
+        "timestamp": "2026-08-21T10:33:59.503923",
+        "status": "OPEN",
+        "severity": "LOW",
+        "risk_score": 10,
+        "risk_level": "LOW",
+        "event_type": "CREATED",
+        "file": {
+            "name": "verify_1.txt",
+            "path": "test_data/verify_1.txt",
+            "sha256": "e5544c6b30271b0e1a3783a445a05bd84875a1aeb7735ff5ed0460f29106df49"
+        },
+        "risk_reasons": [
+            "1 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821102759990045-c3978a",
+        "timestamp": "2026-08-21T10:27:59.990045",
+        "status": "CONTAINED",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "event_type": "CREATED",
+        "file": {
+            "name": "clean_demo_6.txt",
+            "path": "test_data/clean_demo_6.txt",
+            "sha256": "0e7e71df6076ec3d6a703b57853d07b5cda03f4e78afed59d6a4174389872b89"
+        },
+        "risk_reasons": [
+            "6 file(s) modified",
+            "Rapid file activity detected"
+        ],
+        "response": {
+            "status": "quarantined"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821102759472707-481b3a",
+        "timestamp": "2026-08-21T10:27:59.472707",
+        "status": "CONTAINED",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "event_type": "CREATED",
+        "file": {
+            "name": "clean_demo_5.txt",
+            "path": "test_data/clean_demo_5.txt",
+            "sha256": "bda97ab5865bc8e566e6f40726cebbe4d1299b42ad52457a46aa206bad3fe368"
+        },
+        "risk_reasons": [
+            "5 file(s) modified",
+            "Rapid file activity detected"
+        ],
+        "response": {
+            "status": "quarantined"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821102759166743-ba306a",
+        "timestamp": "2026-08-21T10:27:59.166743",
+        "status": "OPEN",
+        "severity": "MEDIUM",
+        "risk_score": 40,
+        "risk_level": "MEDIUM",
+        "event_type": "CREATED",
+        "file": {
+            "name": "clean_demo_4.txt",
+            "path": "test_data/clean_demo_4.txt",
+            "sha256": "3709bcbfb62ab1326c8ab3284980313e12fef751a2252060945fbad10993af7f"
+        },
+        "risk_reasons": [
+            "4 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821102758862198-3e64dc",
+        "timestamp": "2026-08-21T10:27:58.862198",
+        "status": "OPEN",
+        "severity": "MEDIUM",
+        "risk_score": 30,
+        "risk_level": "MEDIUM",
+        "event_type": "CREATED",
+        "file": {
+            "name": "clean_demo_3.txt",
+            "path": "test_data/clean_demo_3.txt",
+            "sha256": "d7a2bf91b9272e7ad837f54290bb480a5bacf0076264d15a1906798d534b20da"
+        },
+        "risk_reasons": [
+            "3 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821102758541855-1dc5ff",
+        "timestamp": "2026-08-21T10:27:58.541855",
+        "status": "OPEN",
+        "severity": "LOW",
+        "risk_score": 20,
+        "risk_level": "LOW",
+        "event_type": "CREATED",
+        "file": {
+            "name": "clean_demo_2.txt",
+            "path": "test_data/clean_demo_2.txt",
+            "sha256": "86c85ade9ed2a372955bd48f952b3213ed7c301a0dd3b71329e8f458cb7e84c2"
+        },
+        "risk_reasons": [
+            "2 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821102758233416-5ee183",
+        "timestamp": "2026-08-21T10:27:58.233416",
+        "status": "OPEN",
+        "severity": "LOW",
+        "risk_score": 10,
+        "risk_level": "LOW",
+        "event_type": "CREATED",
+        "file": {
+            "name": "clean_demo_1.txt",
+            "path": "test_data/clean_demo_1.txt",
+            "sha256": "0090217b124f0a34993fb539e4087c26b0471e780c4a2920a5ca0582c584993b"
+        },
+        "risk_reasons": [
+            "1 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821095713227373-077f7e",
+        "timestamp": "2026-08-21T09:57:13.227373",
+        "status": "CONTAINED",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "event_type": "CREATED",
+        "file": {
+            "name": "fix_demo_6.txt",
+            "path": "test_data/fix_demo_6.txt",
+            "sha256": "cd43ec8c893968065696b4092454a8a969f46fcf4508227e311553144444e098"
+        },
+        "risk_reasons": [
+            "6 file(s) modified",
+            "Rapid file activity detected"
+        ],
+        "response": {
+            "status": "quarantined"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821095713227373-077f7e",
+        "timestamp": "2026-08-21T09:57:13.227373",
+        "status": "CONTAINED",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "event_type": "CREATED",
+        "file": {
+            "name": "fix_demo_6.txt",
+            "path": "test_data/fix_demo_6.txt",
+            "sha256": "cd43ec8c893968065696b4092454a8a969f46fcf4508227e311553144444e098"
+        },
+        "risk_reasons": [
+            "6 file(s) modified",
+            "Rapid file activity detected"
+        ],
+        "response": {
+            "status": "quarantined"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821095712711822-7a7d93",
+        "timestamp": "2026-08-21T09:57:12.711822",
+        "status": "CONTAINED",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "event_type": "CREATED",
+        "file": {
+            "name": "fix_demo_5.txt",
+            "path": "test_data/fix_demo_5.txt",
+            "sha256": "a52ee4ceafaa3d105260aae5470bba8b26bff5b573b99afa9cf65e234364c334"
+        },
+        "risk_reasons": [
+            "5 file(s) modified",
+            "Rapid file activity detected"
+        ],
+        "response": {
+            "status": "quarantined"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821095712711822-7a7d93",
+        "timestamp": "2026-08-21T09:57:12.711822",
+        "status": "CONTAINED",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "event_type": "CREATED",
+        "file": {
+            "name": "fix_demo_5.txt",
+            "path": "test_data/fix_demo_5.txt",
+            "sha256": "a52ee4ceafaa3d105260aae5470bba8b26bff5b573b99afa9cf65e234364c334"
+        },
+        "risk_reasons": [
+            "5 file(s) modified",
+            "Rapid file activity detected"
+        ],
+        "response": {
+            "status": "quarantined"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821095712408828-a48691",
+        "timestamp": "2026-08-21T09:57:12.408828",
+        "status": "OPEN",
+        "severity": "MEDIUM",
+        "risk_score": 40,
+        "risk_level": "MEDIUM",
+        "event_type": "CREATED",
+        "file": {
+            "name": "fix_demo_4.txt",
+            "path": "test_data/fix_demo_4.txt",
+            "sha256": "985e9c79931c3db663ade22c5b9a54feec6dba503ac1e655e9497d648e8ea932"
+        },
+        "risk_reasons": [
+            "4 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821095712408828-a48691",
+        "timestamp": "2026-08-21T09:57:12.408828",
+        "status": "OPEN",
+        "severity": "MEDIUM",
+        "risk_score": 40,
+        "risk_level": "MEDIUM",
+        "event_type": "CREATED",
+        "file": {
+            "name": "fix_demo_4.txt",
+            "path": "test_data/fix_demo_4.txt",
+            "sha256": "985e9c79931c3db663ade22c5b9a54feec6dba503ac1e655e9497d648e8ea932"
+        },
+        "risk_reasons": [
+            "4 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821095712099286-39839f",
+        "timestamp": "2026-08-21T09:57:12.099286",
+        "status": "OPEN",
+        "severity": "MEDIUM",
+        "risk_score": 30,
+        "risk_level": "MEDIUM",
+        "event_type": "CREATED",
+        "file": {
+            "name": "fix_demo_3.txt",
+            "path": "test_data/fix_demo_3.txt",
+            "sha256": "408940243ebea4ea4d0a79c0315012f291d53bd2c31f1629bd28640b370f3ea7"
+        },
+        "risk_reasons": [
+            "3 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821095712099286-39839f",
+        "timestamp": "2026-08-21T09:57:12.099286",
+        "status": "OPEN",
+        "severity": "MEDIUM",
+        "risk_score": 30,
+        "risk_level": "MEDIUM",
+        "event_type": "CREATED",
+        "file": {
+            "name": "fix_demo_3.txt",
+            "path": "test_data/fix_demo_3.txt",
+            "sha256": "408940243ebea4ea4d0a79c0315012f291d53bd2c31f1629bd28640b370f3ea7"
+        },
+        "risk_reasons": [
+            "3 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821095711788712-6075d1",
+        "timestamp": "2026-08-21T09:57:11.788712",
+        "status": "OPEN",
+        "severity": "LOW",
+        "risk_score": 20,
+        "risk_level": "LOW",
+        "event_type": "CREATED",
+        "file": {
+            "name": "fix_demo_2.txt",
+            "path": "test_data/fix_demo_2.txt",
+            "sha256": "b49566936a2fd7f70539dd5f1ce6cfaaa3a75a3dcfaec9ce7f5cab1c9cc2d1be"
+        },
+        "risk_reasons": [
+            "2 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821095711788712-6075d1",
+        "timestamp": "2026-08-21T09:57:11.788712",
+        "status": "OPEN",
+        "severity": "LOW",
+        "risk_score": 20,
+        "risk_level": "LOW",
+        "event_type": "CREATED",
+        "file": {
+            "name": "fix_demo_2.txt",
+            "path": "test_data/fix_demo_2.txt",
+            "sha256": "b49566936a2fd7f70539dd5f1ce6cfaaa3a75a3dcfaec9ce7f5cab1c9cc2d1be"
+        },
+        "risk_reasons": [
+            "2 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821095711471445-c3cc1b",
+        "timestamp": "2026-08-21T09:57:11.471445",
+        "status": "OPEN",
+        "severity": "LOW",
+        "risk_score": 10,
+        "risk_level": "LOW",
+        "event_type": "CREATED",
+        "file": {
+            "name": "fix_demo_1.txt",
+            "path": "test_data/fix_demo_1.txt",
+            "sha256": "3295defcb701896f16f412dcf2ddade9bbc7ffb6da2b17b2fadea1c0ae3841e8"
+        },
+        "risk_reasons": [
+            "1 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821095711471445-c3cc1b",
+        "timestamp": "2026-08-21T09:57:11.471445",
+        "status": "OPEN",
+        "severity": "LOW",
+        "risk_score": 10,
+        "risk_level": "LOW",
+        "event_type": "CREATED",
+        "file": {
+            "name": "fix_demo_1.txt",
+            "path": "test_data/fix_demo_1.txt",
+            "sha256": "3295defcb701896f16f412dcf2ddade9bbc7ffb6da2b17b2fadea1c0ae3841e8"
+        },
+        "risk_reasons": [
+            "1 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821095309718675-a75176",
+        "timestamp": "2026-08-21T09:53:09.718675",
+        "status": "CONTAINED",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "event_type": "CREATED",
+        "file": {
+            "name": "live_demo_6.txt",
+            "path": "test_data/live_demo_6.txt",
+            "sha256": "9e9d8d32251e48f88b086a7602bff3a8b85bbf67ca187c655393358cfb95fa7c"
+        },
+        "risk_reasons": [
+            "6 file(s) modified",
+            "Rapid file activity detected"
+        ],
+        "response": {
+            "status": "quarantined"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821095309718675-a75176",
+        "timestamp": "2026-08-21T09:53:09.718675",
+        "status": "CONTAINED",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "event_type": "CREATED",
+        "file": {
+            "name": "live_demo_6.txt",
+            "path": "test_data/live_demo_6.txt",
+            "sha256": "9e9d8d32251e48f88b086a7602bff3a8b85bbf67ca187c655393358cfb95fa7c"
+        },
+        "risk_reasons": [
+            "6 file(s) modified",
+            "Rapid file activity detected"
+        ],
+        "response": {
+            "status": "quarantined"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821095309214025-beefe5",
+        "timestamp": "2026-08-21T09:53:09.214025",
+        "status": "CONTAINED",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "event_type": "CREATED",
+        "file": {
+            "name": "live_demo_5.txt",
+            "path": "test_data/live_demo_5.txt",
+            "sha256": "e443717d3a1c64a7260483f9939b4dad587ef23f2322c5f5cd880b8cba4f8959"
+        },
+        "risk_reasons": [
+            "5 file(s) modified",
+            "Rapid file activity detected"
+        ],
+        "response": {
+            "status": "quarantined"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821095309214025-beefe5",
+        "timestamp": "2026-08-21T09:53:09.214025",
+        "status": "CONTAINED",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "event_type": "CREATED",
+        "file": {
+            "name": "live_demo_5.txt",
+            "path": "test_data/live_demo_5.txt",
+            "sha256": "e443717d3a1c64a7260483f9939b4dad587ef23f2322c5f5cd880b8cba4f8959"
+        },
+        "risk_reasons": [
+            "5 file(s) modified",
+            "Rapid file activity detected"
+        ],
+        "response": {
+            "status": "quarantined"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821095308886281-57db5a",
+        "timestamp": "2026-08-21T09:53:08.886281",
+        "status": "OPEN",
+        "severity": "MEDIUM",
+        "risk_score": 40,
+        "risk_level": "MEDIUM",
+        "event_type": "CREATED",
+        "file": {
+            "name": "live_demo_4.txt",
+            "path": "test_data/live_demo_4.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "risk_reasons": [
+            "4 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821095308886281-57db5a",
+        "timestamp": "2026-08-21T09:53:08.886281",
+        "status": "OPEN",
+        "severity": "MEDIUM",
+        "risk_score": 40,
+        "risk_level": "MEDIUM",
+        "event_type": "CREATED",
+        "file": {
+            "name": "live_demo_4.txt",
+            "path": "test_data/live_demo_4.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "risk_reasons": [
+            "4 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821095308577381-0c5eb9",
+        "timestamp": "2026-08-21T09:53:08.577381",
+        "status": "OPEN",
+        "severity": "MEDIUM",
+        "risk_score": 30,
+        "risk_level": "MEDIUM",
+        "event_type": "CREATED",
+        "file": {
+            "name": "live_demo_3.txt",
+            "path": "test_data/live_demo_3.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "risk_reasons": [
+            "3 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821095308577381-0c5eb9",
+        "timestamp": "2026-08-21T09:53:08.577381",
+        "status": "OPEN",
+        "severity": "MEDIUM",
+        "risk_score": 30,
+        "risk_level": "MEDIUM",
+        "event_type": "CREATED",
+        "file": {
+            "name": "live_demo_3.txt",
+            "path": "test_data/live_demo_3.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "risk_reasons": [
+            "3 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821095308267413-a410ce",
+        "timestamp": "2026-08-21T09:53:08.267413",
+        "status": "OPEN",
+        "severity": "LOW",
+        "risk_score": 20,
+        "risk_level": "LOW",
+        "event_type": "CREATED",
+        "file": {
+            "name": "live_demo_2.txt",
+            "path": "test_data/live_demo_2.txt",
+            "sha256": "5f3d16c1279328250b32a55e93382c65a4e9c45835da064382e9b9b2f16b7efd"
+        },
+        "risk_reasons": [
+            "2 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821095308267413-a410ce",
+        "timestamp": "2026-08-21T09:53:08.267413",
+        "status": "OPEN",
+        "severity": "LOW",
+        "risk_score": 20,
+        "risk_level": "LOW",
+        "event_type": "CREATED",
+        "file": {
+            "name": "live_demo_2.txt",
+            "path": "test_data/live_demo_2.txt",
+            "sha256": "5f3d16c1279328250b32a55e93382c65a4e9c45835da064382e9b9b2f16b7efd"
+        },
+        "risk_reasons": [
+            "2 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821095307962593-1d8940",
+        "timestamp": "2026-08-21T09:53:07.962593",
+        "status": "OPEN",
+        "severity": "LOW",
+        "risk_score": 10,
+        "risk_level": "LOW",
+        "event_type": "CREATED",
+        "file": {
+            "name": "live_demo_1.txt",
+            "path": "test_data/live_demo_1.txt",
+            "sha256": "188d4d23d92d72d5a1d5598c3ec2957378cb2932306523dbe23b1c2065a97b8c"
+        },
+        "risk_reasons": [
+            "1 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821095307962593-1d8940",
+        "timestamp": "2026-08-21T09:53:07.962593",
+        "status": "OPEN",
+        "severity": "LOW",
+        "risk_score": 10,
+        "risk_level": "LOW",
+        "event_type": "CREATED",
+        "file": {
+            "name": "live_demo_1.txt",
+            "path": "test_data/live_demo_1.txt",
+            "sha256": "188d4d23d92d72d5a1d5598c3ec2957378cb2932306523dbe23b1c2065a97b8c"
+        },
+        "risk_reasons": [
+            "1 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821091413450612-c26eed",
+        "timestamp": "2026-08-21T09:14:13.450612",
+        "status": "CONTAINED",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "event_type": "CREATED",
+        "file": {
+            "name": "final_rapid_6.txt",
+            "path": "test_data/final_rapid_6.txt",
+            "sha256": "754ebd9f186a2b3d1521af258a9ac9b4b68ec43c176b8c22c60c0a2488fff3ab"
+        },
+        "risk_reasons": [
+            "6 file(s) modified",
+            "Rapid file activity detected"
+        ],
+        "response": {
+            "status": "quarantined"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821091412941899-04b047",
+        "timestamp": "2026-08-21T09:14:12.941899",
+        "status": "CONTAINED",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "event_type": "CREATED",
+        "file": {
+            "name": "final_rapid_5.txt",
+            "path": "test_data/final_rapid_5.txt",
+            "sha256": "b522b8cf3c3d8da7bdb90e16a70b1806cf17ec6afac4f408bb07fa8c10b425d3"
+        },
+        "risk_reasons": [
+            "5 file(s) modified",
+            "Rapid file activity detected"
+        ],
+        "response": {
+            "status": "quarantined"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821091412939860-18df1c",
+        "timestamp": "2026-08-21T09:14:12.939860",
+        "status": "OPEN",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "event_type": "CREATED",
+        "file": {
+            "name": "final_rapid_5.txt",
+            "path": "test_data/final_rapid_5.txt",
+            "sha256": "b522b8cf3c3d8da7bdb90e16a70b1806cf17ec6afac4f408bb07fa8c10b425d3"
+        },
+        "risk_reasons": [
+            "5 file(s) modified",
+            "Rapid file activity detected"
+        ],
+        "response": {
+            "status": "error"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821091412634056-c6f5c9",
+        "timestamp": "2026-08-21T09:14:12.634056",
+        "status": "OPEN",
+        "severity": "MEDIUM",
+        "risk_score": 40,
+        "risk_level": "MEDIUM",
+        "event_type": "CREATED",
+        "file": {
+            "name": "final_rapid_4.txt",
+            "path": "test_data/final_rapid_4.txt",
+            "sha256": "41dd2c9e496623b74d1ee29581bbcad89c7bdedb9193e19f31802b621358bc6e"
+        },
+        "risk_reasons": [
+            "4 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821091412629077-f2b4c0",
+        "timestamp": "2026-08-21T09:14:12.629077",
+        "status": "OPEN",
+        "severity": "MEDIUM",
+        "risk_score": 40,
+        "risk_level": "MEDIUM",
+        "event_type": "CREATED",
+        "file": {
+            "name": "final_rapid_4.txt",
+            "path": "test_data/final_rapid_4.txt",
+            "sha256": "41dd2c9e496623b74d1ee29581bbcad89c7bdedb9193e19f31802b621358bc6e"
+        },
+        "risk_reasons": [
+            "4 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821091412319412-e932e0",
+        "timestamp": "2026-08-21T09:14:12.319412",
+        "status": "OPEN",
+        "severity": "MEDIUM",
+        "risk_score": 30,
+        "risk_level": "MEDIUM",
+        "event_type": "CREATED",
+        "file": {
+            "name": "final_rapid_3.txt",
+            "path": "test_data/final_rapid_3.txt",
+            "sha256": "b725ec9592ba33dd4f7298f0e72db09b6688b171ae44f587cdffa143e17783c6"
+        },
+        "risk_reasons": [
+            "3 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821091412316303-80ff14",
+        "timestamp": "2026-08-21T09:14:12.316303",
+        "status": "OPEN",
+        "severity": "MEDIUM",
+        "risk_score": 30,
+        "risk_level": "MEDIUM",
+        "event_type": "CREATED",
+        "file": {
+            "name": "final_rapid_3.txt",
+            "path": "test_data/final_rapid_3.txt",
+            "sha256": "b725ec9592ba33dd4f7298f0e72db09b6688b171ae44f587cdffa143e17783c6"
+        },
+        "risk_reasons": [
+            "3 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821091412007363-3ac58e",
+        "timestamp": "2026-08-21T09:14:12.007363",
+        "status": "OPEN",
+        "severity": "LOW",
+        "risk_score": 20,
+        "risk_level": "LOW",
+        "event_type": "CREATED",
+        "file": {
+            "name": "final_rapid_2.txt",
+            "path": "test_data/final_rapid_2.txt",
+            "sha256": "6c34389aa4cad0753c2ac284ef8a79f13fdb1482a2854803d862208e0a848487"
+        },
+        "risk_reasons": [
+            "2 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821091412008890-711464",
+        "timestamp": "2026-08-21T09:14:12.008890",
+        "status": "OPEN",
+        "severity": "LOW",
+        "risk_score": 20,
+        "risk_level": "LOW",
+        "event_type": "CREATED",
+        "file": {
+            "name": "final_rapid_2.txt",
+            "path": "test_data/final_rapid_2.txt",
+            "sha256": "6c34389aa4cad0753c2ac284ef8a79f13fdb1482a2854803d862208e0a848487"
+        },
+        "risk_reasons": [
+            "2 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821091411701136-a57daf",
+        "timestamp": "2026-08-21T09:14:11.701136",
+        "status": "OPEN",
+        "severity": "LOW",
+        "risk_score": 10,
+        "risk_level": "LOW",
+        "event_type": "CREATED",
+        "file": {
+            "name": "final_rapid_1.txt",
+            "path": "test_data/final_rapid_1.txt",
+            "sha256": "5f3300c1a365b8455d307a5bbdf003c3f2367b62c28c9d923d984aca091804f3"
+        },
+        "risk_reasons": [
+            "1 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821091411700457-e408a2",
+        "timestamp": "2026-08-21T09:14:11.700457",
+        "status": "OPEN",
+        "severity": "LOW",
+        "risk_score": 10,
+        "risk_level": "LOW",
+        "event_type": "CREATED",
+        "file": {
+            "name": "final_rapid_1.txt",
+            "path": "test_data/final_rapid_1.txt",
+            "sha256": "5f3300c1a365b8455d307a5bbdf003c3f2367b62c28c9d923d984aca091804f3"
+        },
+        "risk_reasons": [
+            "1 file(s) modified"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821090906-02dcce",
+        "timestamp": "2026-08-21T09:09:06.113579",
+        "status": "CONTAINED",
+        "severity": "CRITICAL",
+        "risk_score": 90,
+        "risk_level": "CRITICAL",
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "acdf4315b7e14a0f93025a9e91d79472_web_ransomware_test.encrypted",
+            "path": "/home/kali/rdrs/uploads/acdf4315b7e14a0f93025a9e91d79472_web_ransomware_test.encrypted",
+            "size": 104,
+            "sha256": "609dacdc2cdd3561136d51e3ee35295289f91da8dd54cbd3d10ac7c90217b20a"
+        },
+        "risk_reasons": [
+            "Suspicious filename indicator",
+            "Suspicious ransomware-like extension",
+            "Ransomware-related text indicator"
+        ],
+        "analysis": {
+            "entropy": 4.609,
+            "suspicious": true
+        },
+        "response": {
+            "status": "quarantined",
+            "original_path": "/home/kali/rdrs/uploads/acdf4315b7e14a0f93025a9e91d79472_web_ransomware_test.encrypted",
+            "quarantine_path": "quarantine/20260821090906_acdf4315b7e14a0f93025a9e91d79472_web_ransomware_test.encrypted"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821075852-16cf40",
+        "timestamp": "2026-08-21T07:58:52.714745",
+        "status": "CONTAINED",
+        "severity": "CRITICAL",
+        "risk_score": 100,
+        "risk_level": "CRITICAL",
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "b45b50790d904ca88d813e78c09fc1ac_critical_test.encrypted",
+            "path": "/home/kali/rdrs/uploads/b45b50790d904ca88d813e78c09fc1ac_critical_test.encrypted",
+            "size": 119,
+            "sha256": "582ad86ec37d956207b07f5f819e8943f9fece66516271ceb46145e06d42c50f"
+        },
+        "risk_reasons": [
+            "Suspicious filename indicator",
+            "Suspicious ransomware-like extension",
+            "Ransomware-related text indicator"
+        ],
+        "analysis": {
+            "entropy": 4.259,
+            "suspicious": true
+        },
+        "response": {
+            "status": "quarantined"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821075846-66b82c",
+        "timestamp": "2026-08-21T07:58:46.490392",
+        "status": "CONTAINED",
+        "severity": "HIGH",
+        "risk_score": 75,
+        "risk_level": "HIGH",
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "b320323251eb4c6d9aba9bdd2c0e39ab_high_test.encrypted",
+            "path": "/home/kali/rdrs/uploads/b320323251eb4c6d9aba9bdd2c0e39ab_high_test.encrypted",
+            "size": 32,
+            "sha256": "e0c9733462ee277c3aff833609ebe12a5d07c4199ee3ee4d95d22093403a70b1"
+        },
+        "risk_reasons": [
+            "Suspicious filename indicator",
+            "Suspicious ransomware-like extension",
+            "Ransomware-related text indicator"
+        ],
+        "analysis": {
+            "entropy": 4.078,
+            "suspicious": true
+        },
+        "response": {
+            "status": "quarantined"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821075841-b3cdcc",
+        "timestamp": "2026-08-21T07:58:41.079532",
+        "status": "OPEN",
+        "severity": "MEDIUM",
+        "risk_score": 40,
+        "risk_level": "MEDIUM",
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "374471ca31354d96a3b66d1d627aee97_medium_ransom.txt",
+            "path": "/home/kali/rdrs/uploads/374471ca31354d96a3b66d1d627aee97_medium_ransom.txt",
+            "size": 8,
+            "sha256": "61d520ccb74288c96bc1a2b20ea1c0d5a704776dd0164a396efec3ea7040349d"
+        },
+        "risk_reasons": [
+            "Suspicious filename indicator",
+            "Ransomware-related text indicator"
+        ],
+        "analysis": {
+            "entropy": 2.75,
+            "suspicious": true
+        },
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821075831-e2743a",
+        "timestamp": "2026-08-21T07:58:31.410640",
+        "status": "OPEN",
+        "severity": "LOW",
+        "risk_score": 0,
+        "risk_level": "LOW",
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "2773f74a4ca84581945210fd9c958ad2_low_test.txt",
+            "path": "/home/kali/rdrs/uploads/2773f74a4ca84581945210fd9c958ad2_low_test.txt",
+            "size": 32,
+            "sha256": "3226741d265bdee173e3eaf1502a8d8ff5e9802ef0f9a44c2b06f3d165582b04"
+        },
+        "risk_reasons": [],
+        "analysis": {
+            "entropy": 3.781,
+            "suspicious": false
+        },
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-DEMO-QUARANTINED",
+        "timestamp": "2026-08-21T07:58:52.714745",
+        "status": "CONTAINED",
+        "severity": "LOW",
+        "risk_score": 10,
+        "risk_level": "LOW",
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "quarantine_demo.txt",
+            "path": "/home/kali/rdrs/quarantine/quarantine_demo.txt",
+            "size": 32,
+            "sha256": "demo-quarantine-sha256"
+        },
+        "analysis": {
+            "entropy": 3.7,
+            "suspicious": false
+        },
+        "risk_reasons": [
+            "File isolated for demonstration"
+        ],
+        "response": {
+            "status": "quarantined"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821081424",
+        "timestamp": "2026-08-21T08:14:24.871091",
+        "severity": "LOW",
+        "risk_score": 10,
+        "risk_level": "LOW",
+        "message": "Normal file activity",
+        "changed_files": [
+            {
+                "path": "test_data/realtime_test.txt",
+                "sha256": "f797a32766df043c332229224446779d515ee15dbb139b0557cec98e3a25efaa"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821081424",
+        "timestamp": "2026-08-21T08:14:24.872294",
+        "severity": "LOW",
+        "risk_score": 10,
+        "risk_level": "LOW",
+        "message": "Normal file activity",
+        "changed_files": [
+            {
+                "path": "/home/kali/rdrs/test_data/realtime_test.txt",
+                "sha256": "f797a32766df043c332229224446779d515ee15dbb139b0557cec98e3a25efaa"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821081751",
+        "timestamp": "2026-08-21T08:17:51.506915",
+        "severity": "LOW",
+        "risk_score": 10,
+        "risk_level": "LOW",
+        "message": "Normal file activity",
+        "changed_files": [
+            {
+                "path": "test_data/rapid_test_1.txt",
+                "sha256": "81805cdb4dfcfbfaef2a29db5fe2b3761589724bc5854363c5b291d1097bc2bd"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821081751",
+        "timestamp": "2026-08-21T08:17:51.811803",
+        "severity": "LOW",
+        "risk_score": 20,
+        "risk_level": "LOW",
+        "message": "Normal file activity",
+        "changed_files": [
+            {
+                "path": "test_data/rapid_test_2.txt",
+                "sha256": "0663ec3ff103b9c0fc65ccb96b800fd068e13f9d12f43072ab5e67046572b678"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821081752",
+        "timestamp": "2026-08-21T08:17:52.114742",
+        "severity": "MEDIUM",
+        "risk_score": 30,
+        "risk_level": "MEDIUM",
+        "message": "Unusual file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/rapid_test_3.txt",
+                "sha256": "9f2a099aa8c3df4f3b7ae9502878ca1f73e1c7bb4bf503a4d3745bbf34c41121"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821081752",
+        "timestamp": "2026-08-21T08:17:52.419929",
+        "severity": "MEDIUM",
+        "risk_score": 40,
+        "risk_level": "MEDIUM",
+        "message": "Unusual file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/rapid_test_4.txt",
+                "sha256": "280d1cf51fead92401bfd2d4de5b7ad1e96c9d298855120336be9f55f8cb5e80"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821081752",
+        "timestamp": "2026-08-21T08:17:52.725025",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "message": "Suspicious file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/rapid_test_5.txt",
+                "sha256": "05475ef54851913cfd3b036ce4604fb7ac4bac3e538042fa28cde99c495d29b7"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821081753",
+        "timestamp": "2026-08-21T08:17:53.227911",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "message": "Suspicious file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/rapid_test_6.txt",
+                "sha256": "130ea1fe77267bc05085e95105f0ff6c5d51090d3e38958f19444dcc990e37d8"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821082757",
+        "timestamp": "2026-08-21T08:27:57.976066",
+        "severity": "LOW",
+        "risk_score": 10,
+        "risk_level": "LOW",
+        "message": "Normal file activity",
+        "changed_files": [
+            {
+                "path": "test_data/demo_rapid_1.txt",
+                "sha256": "0b372438a09111a28e7aa8572e726c97681bf4a9e2b5784234903b4fd92e54bc"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821082758",
+        "timestamp": "2026-08-21T08:27:58.278363",
+        "severity": "LOW",
+        "risk_score": 20,
+        "risk_level": "LOW",
+        "message": "Normal file activity",
+        "changed_files": [
+            {
+                "path": "test_data/demo_rapid_2.txt",
+                "sha256": "4a7eddbd5a49642705116c5520a422587a69a05b8f8e0b8dc0cf6cc2117d3aff"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821082758",
+        "timestamp": "2026-08-21T08:27:58.580872",
+        "severity": "MEDIUM",
+        "risk_score": 30,
+        "risk_level": "MEDIUM",
+        "message": "Unusual file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/demo_rapid_3.txt",
+                "sha256": "5b0a60b1b4dadee61408969204163ffc1b87efe67ac99318744ff3517c89f520"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821082758",
+        "timestamp": "2026-08-21T08:27:58.885413",
+        "severity": "MEDIUM",
+        "risk_score": 40,
+        "risk_level": "MEDIUM",
+        "message": "Unusual file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/demo_rapid_4.txt",
+                "sha256": "88c2e54da012cd6121428d24211221dda807a1fabf3975c5383ce57a26f7de2d"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821082759",
+        "timestamp": "2026-08-21T08:27:59.190258",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "message": "Suspicious file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/demo_rapid_5.txt",
+                "sha256": "78186c9e5f559aa072ff2e7b1c7ee48b9189041c4636ff34ecc7e9f4d3df9d47"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821082759",
+        "timestamp": "2026-08-21T08:27:59.693311",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "message": "Suspicious file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/demo_rapid_6.txt",
+                "sha256": "18dd961104fab054f61d7e2d06462dc95394c51476d88c4470f0cf8dba49c02c"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821091411",
+        "timestamp": "2026-08-21T09:14:11.697137",
+        "severity": "LOW",
+        "risk_score": 10,
+        "risk_level": "LOW",
+        "message": "Normal file activity",
+        "changed_files": [
+            {
+                "path": "test_data/final_rapid_1.txt",
+                "sha256": "5f3300c1a365b8455d307a5bbdf003c3f2367b62c28c9d923d984aca091804f3"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821091411",
+        "timestamp": "2026-08-21T09:14:11.698561",
+        "severity": "LOW",
+        "risk_score": 10,
+        "risk_level": "LOW",
+        "message": "Normal file activity",
+        "changed_files": [
+            {
+                "path": "test_data/final_rapid_1.txt",
+                "sha256": "5f3300c1a365b8455d307a5bbdf003c3f2367b62c28c9d923d984aca091804f3"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821091412",
+        "timestamp": "2026-08-21T09:14:12.006558",
+        "severity": "LOW",
+        "risk_score": 20,
+        "risk_level": "LOW",
+        "message": "Normal file activity",
+        "changed_files": [
+            {
+                "path": "test_data/final_rapid_2.txt",
+                "sha256": "6c34389aa4cad0753c2ac284ef8a79f13fdb1482a2854803d862208e0a848487"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821091412",
+        "timestamp": "2026-08-21T09:14:12.007938",
+        "severity": "LOW",
+        "risk_score": 20,
+        "risk_level": "LOW",
+        "message": "Normal file activity",
+        "changed_files": [
+            {
+                "path": "test_data/final_rapid_2.txt",
+                "sha256": "6c34389aa4cad0753c2ac284ef8a79f13fdb1482a2854803d862208e0a848487"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821091412",
+        "timestamp": "2026-08-21T09:14:12.311077",
+        "severity": "MEDIUM",
+        "risk_score": 30,
+        "risk_level": "MEDIUM",
+        "message": "Unusual file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/final_rapid_3.txt",
+                "sha256": "b725ec9592ba33dd4f7298f0e72db09b6688b171ae44f587cdffa143e17783c6"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821091412",
+        "timestamp": "2026-08-21T09:14:12.313016",
+        "severity": "MEDIUM",
+        "risk_score": 30,
+        "risk_level": "MEDIUM",
+        "message": "Unusual file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/final_rapid_3.txt",
+                "sha256": "b725ec9592ba33dd4f7298f0e72db09b6688b171ae44f587cdffa143e17783c6"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821091412",
+        "timestamp": "2026-08-21T09:14:12.625587",
+        "severity": "MEDIUM",
+        "risk_score": 40,
+        "risk_level": "MEDIUM",
+        "message": "Unusual file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/final_rapid_4.txt",
+                "sha256": "41dd2c9e496623b74d1ee29581bbcad89c7bdedb9193e19f31802b621358bc6e"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821091412",
+        "timestamp": "2026-08-21T09:14:12.629599",
+        "severity": "MEDIUM",
+        "risk_score": 40,
+        "risk_level": "MEDIUM",
+        "message": "Unusual file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/final_rapid_4.txt",
+                "sha256": "41dd2c9e496623b74d1ee29581bbcad89c7bdedb9193e19f31802b621358bc6e"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821091412",
+        "timestamp": "2026-08-21T09:14:12.934705",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "message": "Suspicious file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/final_rapid_5.txt",
+                "sha256": "b522b8cf3c3d8da7bdb90e16a70b1806cf17ec6afac4f408bb07fa8c10b425d3"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821091412",
+        "timestamp": "2026-08-21T09:14:12.937881",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "message": "Suspicious file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/final_rapid_5.txt",
+                "sha256": "b522b8cf3c3d8da7bdb90e16a70b1806cf17ec6afac4f408bb07fa8c10b425d3"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821091413",
+        "timestamp": "2026-08-21T09:14:13.448478",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "message": "Suspicious file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/final_rapid_6.txt",
+                "sha256": "754ebd9f186a2b3d1521af258a9ac9b4b68ec43c176b8c22c60c0a2488fff3ab"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821095307",
+        "timestamp": "2026-08-21T09:53:07.961645",
+        "severity": "LOW",
+        "risk_score": 10,
+        "risk_level": "LOW",
+        "message": "Normal file activity",
+        "changed_files": [
+            {
+                "path": "test_data/live_demo_1.txt",
+                "sha256": "188d4d23d92d72d5a1d5598c3ec2957378cb2932306523dbe23b1c2065a97b8c"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821095308",
+        "timestamp": "2026-08-21T09:53:08.265162",
+        "severity": "LOW",
+        "risk_score": 20,
+        "risk_level": "LOW",
+        "message": "Normal file activity",
+        "changed_files": [
+            {
+                "path": "test_data/live_demo_2.txt",
+                "sha256": "5f3d16c1279328250b32a55e93382c65a4e9c45835da064382e9b9b2f16b7efd"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821095308",
+        "timestamp": "2026-08-21T09:53:08.576208",
+        "severity": "MEDIUM",
+        "risk_score": 30,
+        "risk_level": "MEDIUM",
+        "message": "Unusual file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/live_demo_3.txt",
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821095308",
+        "timestamp": "2026-08-21T09:53:08.884259",
+        "severity": "MEDIUM",
+        "risk_score": 40,
+        "risk_level": "MEDIUM",
+        "message": "Unusual file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/live_demo_4.txt",
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821095309",
+        "timestamp": "2026-08-21T09:53:09.210909",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "message": "Suspicious file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/live_demo_5.txt",
+                "sha256": "e443717d3a1c64a7260483f9939b4dad587ef23f2322c5f5cd880b8cba4f8959"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821095309",
+        "timestamp": "2026-08-21T09:53:09.715938",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "message": "Suspicious file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/live_demo_6.txt",
+                "sha256": "9e9d8d32251e48f88b086a7602bff3a8b85bbf67ca187c655393358cfb95fa7c"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821095711",
+        "timestamp": "2026-08-21T09:57:11.470445",
+        "severity": "LOW",
+        "risk_score": 10,
+        "risk_level": "LOW",
+        "message": "Normal file activity",
+        "changed_files": [
+            {
+                "path": "test_data/fix_demo_1.txt",
+                "sha256": "3295defcb701896f16f412dcf2ddade9bbc7ffb6da2b17b2fadea1c0ae3841e8"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821095711",
+        "timestamp": "2026-08-21T09:57:11.786291",
+        "severity": "LOW",
+        "risk_score": 20,
+        "risk_level": "LOW",
+        "message": "Normal file activity",
+        "changed_files": [
+            {
+                "path": "test_data/fix_demo_2.txt",
+                "sha256": "b49566936a2fd7f70539dd5f1ce6cfaaa3a75a3dcfaec9ce7f5cab1c9cc2d1be"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821095712",
+        "timestamp": "2026-08-21T09:57:12.097345",
+        "severity": "MEDIUM",
+        "risk_score": 30,
+        "risk_level": "MEDIUM",
+        "message": "Unusual file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/fix_demo_3.txt",
+                "sha256": "408940243ebea4ea4d0a79c0315012f291d53bd2c31f1629bd28640b370f3ea7"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821095712",
+        "timestamp": "2026-08-21T09:57:12.405155",
+        "severity": "MEDIUM",
+        "risk_score": 40,
+        "risk_level": "MEDIUM",
+        "message": "Unusual file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/fix_demo_4.txt",
+                "sha256": "985e9c79931c3db663ade22c5b9a54feec6dba503ac1e655e9497d648e8ea932"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821095712",
+        "timestamp": "2026-08-21T09:57:12.708405",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "message": "Suspicious file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/fix_demo_5.txt",
+                "sha256": "a52ee4ceafaa3d105260aae5470bba8b26bff5b573b99afa9cf65e234364c334"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821095713",
+        "timestamp": "2026-08-21T09:57:13.223769",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "message": "Suspicious file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/fix_demo_6.txt",
+                "sha256": "cd43ec8c893968065696b4092454a8a969f46fcf4508227e311553144444e098"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821102758",
+        "timestamp": "2026-08-21T10:27:58.232167",
+        "severity": "LOW",
+        "risk_score": 10,
+        "risk_level": "LOW",
+        "message": "Normal file activity",
+        "changed_files": [
+            {
+                "path": "test_data/clean_demo_1.txt",
+                "sha256": "0090217b124f0a34993fb539e4087c26b0471e780c4a2920a5ca0582c584993b"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821102758",
+        "timestamp": "2026-08-21T10:27:58.537431",
+        "severity": "LOW",
+        "risk_score": 20,
+        "risk_level": "LOW",
+        "message": "Normal file activity",
+        "changed_files": [
+            {
+                "path": "test_data/clean_demo_2.txt",
+                "sha256": "86c85ade9ed2a372955bd48f952b3213ed7c301a0dd3b71329e8f458cb7e84c2"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821102758",
+        "timestamp": "2026-08-21T10:27:58.855028",
+        "severity": "MEDIUM",
+        "risk_score": 30,
+        "risk_level": "MEDIUM",
+        "message": "Unusual file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/clean_demo_3.txt",
+                "sha256": "d7a2bf91b9272e7ad837f54290bb480a5bacf0076264d15a1906798d534b20da"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821102759",
+        "timestamp": "2026-08-21T10:27:59.159726",
+        "severity": "MEDIUM",
+        "risk_score": 40,
+        "risk_level": "MEDIUM",
+        "message": "Unusual file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/clean_demo_4.txt",
+                "sha256": "3709bcbfb62ab1326c8ab3284980313e12fef751a2252060945fbad10993af7f"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821102759",
+        "timestamp": "2026-08-21T10:27:59.464919",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "message": "Suspicious file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/clean_demo_5.txt",
+                "sha256": "bda97ab5865bc8e566e6f40726cebbe4d1299b42ad52457a46aa206bad3fe368"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821102759",
+        "timestamp": "2026-08-21T10:27:59.985487",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "message": "Suspicious file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/clean_demo_6.txt",
+                "sha256": "0e7e71df6076ec3d6a703b57853d07b5cda03f4e78afed59d6a4174389872b89"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821103359",
+        "timestamp": "2026-08-21T10:33:59.502301",
+        "severity": "LOW",
+        "risk_score": 10,
+        "risk_level": "LOW",
+        "message": "Normal file activity",
+        "changed_files": [
+            {
+                "path": "test_data/verify_1.txt",
+                "sha256": "e5544c6b30271b0e1a3783a445a05bd84875a1aeb7735ff5ed0460f29106df49"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821103359",
+        "timestamp": "2026-08-21T10:33:59.815143",
+        "severity": "LOW",
+        "risk_score": 20,
+        "risk_level": "LOW",
+        "message": "Normal file activity",
+        "changed_files": [
+            {
+                "path": "test_data/verify_2.txt",
+                "sha256": "56dbcbe1ed1ce15a15e2a18224a9aa5cde5e6860ff5c636efba27539f15fa1a9"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821103400",
+        "timestamp": "2026-08-21T10:34:00.119716",
+        "severity": "MEDIUM",
+        "risk_score": 30,
+        "risk_level": "MEDIUM",
+        "message": "Unusual file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/verify_3.txt",
+                "sha256": "140776bbfd4bc095501e92181a21ff10a432738c6d0b1270ad1e36e87b4e7588"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821103400",
+        "timestamp": "2026-08-21T10:34:00.422363",
+        "severity": "MEDIUM",
+        "risk_score": 40,
+        "risk_level": "MEDIUM",
+        "message": "Unusual file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/verify_4.txt",
+                "sha256": "effac37af04a3772133df29f50b3ce0e1b66426074110ed8343587afda9b3db9"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821103400",
+        "timestamp": "2026-08-21T10:34:00.732466",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "message": "Suspicious file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/verify_5.txt",
+                "sha256": "85a135b6bd37cf9082e8ecda7acd1d81fb2df4c9f7f1aefe4e2eb561473ad575"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    },
+    {
+        "incident_id": "RDRS-20260821103401",
+        "timestamp": "2026-08-21T10:34:01.251367",
+        "severity": "HIGH",
+        "risk_score": 65,
+        "risk_level": "HIGH",
+        "message": "Suspicious file activity detected",
+        "changed_files": [
+            {
+                "path": "test_data/verify_6.txt",
+                "sha256": "b0f8929c5f369dbc8e13edef321176ab885fcd5b5944b178a4c879235f705d7c"
+            }
+        ],
+        "new_files": [],
+        "deleted_files": []
+    }
+]

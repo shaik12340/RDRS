@@ -1,0 +1,1176 @@
+let incidentChart = null;
+
+
+/* ==========================================
+   LOAD SYSTEM STATUS
+========================================== */
+
+
+async function loadStatus() {
+
+    try {
+
+        const res = await fetch("/api/status?_" + Date.now(), {
+            cache: "no-store"
+        });
+
+        if (!res.ok) {
+            throw new Error("Status API failed");
+        }
+
+        const data = await res.json();
+        const statistics = data.statistics || {};
+
+        const total = Number(statistics.total_incidents || 0);
+        const critical = Number(statistics.critical || 0);
+        const high = Number(statistics.high || 0);
+        const medium = Number(statistics.medium || 0);
+        const low = Number(statistics.low || 0);
+
+        const open = Number(statistics.open || 0);
+        const investigating = Number(statistics.investigating || 0);
+        const contained = Number(statistics.contained || 0);
+        const closed = Number(statistics.closed || 0);
+        const quarantined = Number(statistics.quarantined || 0);
+
+
+        /* ================================
+           EXISTING DASHBOARD COUNTERS
+        ================================= */
+
+        const healthEl = document.getElementById("health");
+        const riskEl = document.getElementById("risk");
+        const quarantineEl = document.getElementById("quarantine");
+        const incidentsEl = document.getElementById("incidents");
+
+        if (healthEl) healthEl.innerText = "100%";
+        if (riskEl) riskEl.innerText = critical;
+        if (quarantineEl) quarantineEl.innerText = quarantined;
+
+
+        /*
+         * IMPORTANT:
+         * #incidents is also used by the incident container
+         * in the current HTML, so don't overwrite it here.
+         */
+
+
+        /* ================================
+           OVERALL CIRCLE CENTER
+        ================================= */
+
+        const circle = document.getElementById("overallCircle");
+        const totalEl = document.getElementById("overallTotal");
+
+        if (totalEl) {
+            totalEl.textContent = String(total);
+        }
+
+
+        /* ================================
+           SEVERITY LEGEND COUNTS
+        ================================= */
+
+        const criticalEl =
+            document.getElementById("overallCritical");
+
+        const highEl =
+            document.getElementById("overallHigh");
+
+        const mediumEl =
+            document.getElementById("overallMedium");
+
+        const lowEl =
+            document.getElementById("overallLow");
+
+
+        if (criticalEl)
+            criticalEl.textContent = String(critical);
+
+        if (highEl)
+            highEl.textContent = String(high);
+
+        if (mediumEl)
+            mediumEl.textContent = String(medium);
+
+        if (lowEl)
+            lowEl.textContent = String(low);
+
+
+        /* ================================
+           CIRCLE GRAPH
+        ================================= */
+
+        if (circle) {
+
+            if (total === 0) {
+
+                circle.style.background = "#334155";
+
+            } else {
+
+                const criticalDeg =
+                    (critical / total) * 360;
+
+                const highDeg =
+                    (high / total) * 360;
+
+                const mediumDeg =
+                    (medium / total) * 360;
+
+                const lowDeg =
+                    (low / total) * 360;
+
+
+                const p1 = criticalDeg;
+                const p2 = p1 + highDeg;
+                const p3 = p2 + mediumDeg;
+                const p4 = p3 + lowDeg;
+
+
+                circle.style.background =
+                    "conic-gradient(" +
+                    "#ef4444 0deg " + p1 + "deg," +
+                    "#f97316 " + p1 + "deg " + p2 + "deg," +
+                    "#eab308 " + p2 + "deg " + p3 + "deg," +
+                    "#22c55e " + p3 + "deg " + p4 + "deg" +
+                    ")";
+
+            }
+
+        }
+
+
+        console.log("RDRS STATUS:", {
+            total,
+            critical,
+            high,
+            medium,
+            low,
+            open,
+            investigating,
+            contained,
+            closed,
+            quarantined
+        });
+
+
+    } catch (error) {
+
+        console.error(
+            "❌ RDRS Status Error:",
+            error
+        );
+
+    }
+
+}
+
+
+async function loadIncidents() {
+
+    try {
+
+        const res = await fetch(
+            "/api/incidents?_" + Date.now(),
+            {
+                cache: "no-store"
+            }
+        );
+
+        if (!res.ok) {
+            throw new Error("Incident API failed");
+        }
+
+        const data = await res.json();
+
+        console.log("RDRS INCIDENT DATA:", data);
+
+
+        const container =
+            document.getElementById("incidents");
+
+
+        if (!container) {
+            console.error(
+                "❌ incidents container not found"
+            );
+            return;
+        }
+
+
+        if (!Array.isArray(data) || data.length === 0) {
+
+            container.innerHTML = `
+                <div style="
+                    padding:25px;
+                    text-align:center;
+                    color:#94a3b8;
+                    background:#0f172a;
+                    border:1px solid #334155;
+                    border-radius:10px;
+                ">
+                    ✅ No security incidents found.
+                </div>
+            `;
+
+            return;
+        }
+
+
+        let html = "";
+
+
+        data.forEach(function(i) {
+
+            const level =
+                String(i.risk_level || i.severity || "UNKNOWN")
+                .toUpperCase();
+
+            const status =
+                String(i.status || "OPEN")
+                .toUpperCase();
+
+
+            const file =
+                i.file || {};
+
+            const filename =
+                file.name || "Unknown file";
+
+
+            let severityColor = "#64748b";
+            let severityIcon = "⚪";
+
+
+            if (level === "CRITICAL") {
+
+                severityColor = "#ef4444";
+                severityIcon = "🔴";
+
+            }
+            else if (level === "HIGH") {
+
+                severityColor = "#f97316";
+                severityIcon = "🟠";
+
+            }
+            else if (level === "MEDIUM") {
+
+                severityColor = "#eab308";
+                severityIcon = "🟡";
+
+            }
+            else if (level === "LOW") {
+
+                severityColor = "#22c55e";
+                severityIcon = "🟢";
+
+            }
+
+
+            html += `
+
+            <div style="
+                background:#0f172a;
+                border:1px solid #334155;
+                border-left:5px solid ${severityColor};
+                border-radius:10px;
+                padding:18px;
+                margin:12px 0;
+                box-shadow:0 5px 18px rgba(0,0,0,.25);
+            ">
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                    gap:15px;
+                    flex-wrap:wrap;
+                ">
+
+                    <div>
+
+                        <div style="
+                            font-size:16px;
+                            font-weight:800;
+                            color:white;
+                        ">
+                            ${severityIcon}
+                            ${escapeHtml(
+                                i.incident_id || "Unknown Incident"
+                            )}
+                        </div>
+
+
+                        <div style="
+                            margin-top:7px;
+                            color:#cbd5e1;
+                            font-size:14px;
+                            font-weight:600;
+                        ">
+                            📄 ${escapeHtml(filename)}
+                        </div>
+
+                    </div>
+
+
+                    <div style="
+                        display:flex;
+                        gap:8px;
+                        align-items:center;
+                        flex-wrap:wrap;
+                    ">
+
+                        <span style="
+                            padding:6px 10px;
+                            border-radius:999px;
+                            background:${severityColor};
+                            color:white;
+                            font-weight:800;
+                            font-size:12px;
+                        ">
+                            ${level}
+                        </span>
+
+
+                        <span style="
+                            padding:6px 10px;
+                            border-radius:999px;
+                            background:#1e293b;
+                            color:#cbd5e1;
+                            font-weight:700;
+                            font-size:12px;
+                        ">
+                            ${status}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div style="
+                    margin-top:15px;
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                    gap:10px;
+                    flex-wrap:wrap;
+                ">
+
+                    <div style="
+                        color:#94a3b8;
+                        font-size:13px;
+                    ">
+                        Risk Score:
+                        <strong style="color:white;">
+                            ${Number(i.risk_score || 0)}/100
+                        </strong>
+                    </div>
+
+
+                    <button
+                        onclick="viewDetailsById('${escapeHtml(i.incident_id || "")}')" 
+                        style="
+                            background:#2563eb;
+                            color:white;
+                            border:none;
+                            padding:9px 15px;
+                            border-radius:7px;
+                            cursor:pointer;
+                            font-weight:800;
+                        "
+                    >
+                        🔎 VIEW DETAILS
+                    </button>
+
+                </div>
+
+            </div>
+
+            `;
+
+        });
+
+
+        container.innerHTML = html;
+
+
+        updateIncidentChart(data);
+
+
+    } catch (error) {
+
+        console.error(
+            "❌ Incident loading error:",
+            error
+        );
+
+    }
+
+}
+
+
+
+/* ==========================================
+   PROFESSIONAL INCIDENT DETAILS BOX
+========================================== */
+
+function showIncidentDetailsBox(modal) {
+
+    if (!modal) return;
+
+    modal.style.display = "flex";
+    modal.style.position = "fixed";
+    modal.style.inset = "0";
+    modal.style.zIndex = "99999";
+    modal.style.alignItems = "center";
+    modal.style.justifyContent = "center";
+    modal.style.padding = "20px";
+    modal.style.boxSizing = "border-box";
+    modal.style.overflowY = "auto";
+    modal.style.background = "rgba(0,0,0,0.72)";
+
+    const box = modal.querySelector(".details-box");
+
+    if (box) {
+        box.style.width = "min(900px, 96vw)";
+        box.style.maxWidth = "900px";
+        box.style.maxHeight = "90vh";
+        box.style.overflowY = "auto";
+        box.style.overflowX = "hidden";
+        box.style.boxSizing = "border-box";
+        box.style.padding = "26px";
+        box.style.borderRadius = "16px";
+        box.style.background = "#0f172a";
+        box.style.border = "1px solid #334155";
+        box.style.boxShadow = "0 25px 80px rgba(0,0,0,.55)";
+        box.style.color = "#e5e7eb";
+        box.style.wordBreak = "break-word";
+        box.style.overflowWrap = "anywhere";
+    }
+}
+
+/* ==========================================
+   VIEW INCIDENT DETAILS
+========================================== */
+
+function viewDetails(incident) {
+
+    const modal = document.getElementById("detailsModal");
+    const content = document.getElementById("detailsContent");
+
+    if (!modal || !content) {
+        console.error("❌ Details modal not found");
+        return;
+    }
+
+    const file = incident.file || {};
+    const response = incident.response || {};
+
+    const value = (v, fallback = "N/A") => {
+        if (v === null || v === undefined || v === "") {
+            return fallback;
+        }
+        return String(v);
+    };
+
+    const riskScore = Number(incident.risk_score || 0);
+    const riskLevel = value(
+        incident.risk_level || incident.severity,
+        "UNKNOWN"
+    ).toUpperCase();
+
+    let riskClass = "risk-low";
+
+    if (riskLevel === "CRITICAL") {
+        riskClass = "risk-critical";
+    } else if (riskLevel === "HIGH") {
+        riskClass = "risk-high";
+    } else if (riskLevel === "MEDIUM") {
+        riskClass = "risk-medium";
+    }
+
+    const riskReasons = Array.isArray(incident.risk_reasons)
+        ? incident.risk_reasons
+        : [];
+
+    content.innerHTML = `
+
+        <div class="rdrs-details-header">
+
+            <div>
+                <div class="rdrs-details-title">
+                    🔎 Incident Details
+                </div>
+
+                <div class="rdrs-details-subtitle">
+                    Security incident information
+                </div>
+            </div>
+
+            <button
+                type="button"
+                class="rdrs-details-close"
+                onclick="closeDetails()"
+            >
+                ✕
+            </button>
+
+        </div>
+
+
+        <div class="rdrs-details-id">
+            <span>INCIDENT ID</span>
+            <strong>
+                ${escapeHtml(value(incident.incident_id))}
+            </strong>
+        </div>
+
+
+        <div class="rdrs-details-grid">
+
+
+            <div class="rdrs-detail-card">
+                <span>📄 FILE NAME</span>
+                <strong class="break-text">
+                    ${escapeHtml(value(file.name))}
+                </strong>
+            </div>
+
+
+            <div class="rdrs-detail-card">
+                <span>📦 FILE SIZE</span>
+                <strong>
+                    ${escapeHtml(value(
+                        file.size !== undefined
+                            ? file.size + " bytes"
+                            : "N/A"
+                    ))}
+                </strong>
+            </div>
+
+
+            <div class="rdrs-detail-card full">
+                <span>📁 ORIGINAL LOCATION</span>
+                <strong class="break-text">
+                    ${escapeHtml(value(
+                        file.original_path ||
+                        file.path ||
+                        incident.original_path
+                    ))}
+                </strong>
+            </div>
+
+
+            <div class="rdrs-detail-card full">
+                <span>🛡️ QUARANTINE LOCATION</span>
+                <strong class="break-text">
+                    ${escapeHtml(value(
+                        response.quarantine_path ||
+                        incident.quarantine_path ||
+                        file.quarantine_path
+                    ))}
+                </strong>
+            </div>
+
+
+            <div class="rdrs-detail-card full">
+                <span>🔐 SHA-256</span>
+                <strong class="hash-text">
+                    ${escapeHtml(value(
+                        file.sha256 ||
+                        incident.sha256 ||
+                        incident.hash
+                    ))}
+                </strong>
+            </div>
+
+
+            <div class="rdrs-detail-card">
+                <span>📊 ENTROPY</span>
+                <strong>
+                    ${escapeHtml(value(
+                        incident.entropy
+                    ))}
+                </strong>
+            </div>
+
+
+            <div class="rdrs-detail-card">
+                <span>🎯 RISK SCORE</span>
+                <strong>
+                    ${riskScore}/100
+                </strong>
+            </div>
+
+
+            <div class="rdrs-detail-card">
+                <span>🚨 RISK LEVEL</span>
+                <strong class="${riskClass}">
+                    ${escapeHtml(riskLevel)}
+                </strong>
+            </div>
+
+
+            <div class="rdrs-detail-card">
+                <span>🔎 SUSPICIOUS</span>
+                <strong>
+                    ${incident.suspicious ? "YES" : "NO"}
+                </strong>
+            </div>
+
+
+            <div class="rdrs-detail-card">
+                <span>📌 STATUS</span>
+                <strong>
+                    ${escapeHtml(
+                        value(incident.status, "OPEN").toUpperCase()
+                    )}
+                </strong>
+            </div>
+
+
+            <div class="rdrs-detail-card">
+                <span>⚡ EVENT</span>
+                <strong>
+                    ${escapeHtml(value(
+                        incident.event ||
+                        incident.event_type ||
+                        "N/A"
+                    ))}
+                </strong>
+            </div>
+
+
+            <div class="rdrs-detail-card full">
+                <span>🕒 TIMESTAMP</span>
+                <strong class="break-text">
+                    ${escapeHtml(value(incident.timestamp))}
+                </strong>
+            </div>
+
+
+            <div class="rdrs-detail-card full">
+                <span>🛡️ RESPONSE</span>
+                <strong>
+                    ${escapeHtml(value(
+                        response.action ||
+                        response.status ||
+                        incident.response_action ||
+                        "no_action"
+                    ))}
+                </strong>
+            </div>
+
+
+        </div>
+
+
+        <div class="rdrs-risk-reasons">
+
+            <div class="rdrs-section-title">
+                📝 Risk Reasons
+            </div>
+
+            ${
+                riskReasons.length
+                ? `
+                    <ul>
+                        ${riskReasons.map(reason => `
+                            <li>
+                                ⚠️ ${escapeHtml(reason)}
+                            </li>
+                        `).join("")}
+                    </ul>
+                `
+                : `
+                    <div class="no-reasons">
+                        No risk reasons recorded.
+                    </div>
+                `
+            }
+
+        </div>
+
+
+        <div class="rdrs-details-footer">
+
+            <button
+                type="button"
+                onclick="closeDetails()"
+                class="rdrs-close-button"
+            >
+                CLOSE
+            </button>
+
+        </div>
+
+    `;
+
+
+    /* Modal sizing / overflow protection */
+
+    modal.style.display = "flex";
+    modal.style.position = "fixed";
+    modal.style.inset = "0";
+    modal.style.zIndex = "99999";
+    modal.style.alignItems = "center";
+    modal.style.justifyContent = "center";
+    modal.style.padding = "20px";
+    modal.style.boxSizing = "border-box";
+    modal.style.overflowY = "auto";
+    modal.style.background = "rgba(0,0,0,0.72)";
+
+
+    const box = modal.querySelector(".details-box");
+
+    if (box) {
+        box.style.width = "min(900px, 100%)";
+        box.style.maxWidth = "900px";
+        box.style.maxHeight = "90vh";
+        box.style.overflowY = "auto";
+        box.style.overflowX = "hidden";
+        box.style.boxSizing = "border-box";
+        box.style.margin = "auto";
+        box.style.borderRadius = "16px";
+    }
+
+
+    modal.classList.add("show");
+
+}
+
+function closeDetails() {
+
+    const modal =
+        document.getElementById("detailsModal");
+
+    if (modal) {
+        modal.classList.remove("show");
+        modal.style.display = "none";
+    }
+
+}
+
+
+/* ==========================================
+   INCIDENT DONUT GRAPH
+========================================== */
+
+function updateIncidentChart(incidents) {
+
+    const canvas = document.getElementById("incidentChart");
+
+    if (!canvas) {
+
+        console.error("incidentChart canvas not found");
+
+        return;
+    }
+
+
+    /* Count incidents by risk level */
+
+    let critical = 0;
+    let high = 0;
+    let medium = 0;
+    let low = 0;
+
+    incidents.forEach(function(incident) {
+
+        const level =
+            String(incident.risk_level || "")
+            .toUpperCase();
+
+        if (level === "CRITICAL") {
+            critical++;
+
+        } else if (level === "HIGH") {
+            high++;
+
+        } else if (level === "MEDIUM") {
+            medium++;
+
+        } else if (level === "LOW") {
+            low++;
+        }
+
+    });
+
+
+    /* Destroy previous chart */
+
+    if (incidentChart) {
+
+        incidentChart.destroy();
+
+        incidentChart = null;
+
+    }
+
+
+    /* Create donut */
+
+    incidentChart = new Chart(canvas, {
+
+        type: "doughnut",
+
+        data: {
+
+            labels: [
+                "Critical",
+                "High",
+                "Medium",
+                "Low"
+            ],
+
+            datasets: [{
+
+                data: [
+                    critical,
+                    high,
+                    medium,
+                    low
+                ],
+
+                backgroundColor: [
+                    "#ef4444",
+                    "#f97316",
+                    "#eab308",
+                    "#22c55e"
+                ],
+
+                borderColor: "#0f172a",
+
+                borderWidth: 4,
+
+                hoverOffset: 10
+
+            }]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            cutout: "65%",
+
+            plugins: {
+
+                legend: {
+
+                    position: "bottom",
+
+                    labels: {
+
+                        color: "#cbd5e1",
+
+                        padding: 18,
+
+                        font: {
+
+                            size: 13,
+
+                            weight: "bold"
+
+                        }
+
+                    }
+
+                },
+
+                tooltip: {
+
+                    callbacks: {
+
+                        label: function(context) {
+
+                            return (
+                                " " +
+                                context.label +
+                                ": " +
+                                context.raw
+                            );
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    });
+
+}
+
+
+/* ==========================================
+   REFRESH DASHBOARD
+========================================== */
+
+async function refresh() {
+
+    await loadStatus();
+
+    await loadIncidents();
+
+}
+
+
+/* INITIAL LOAD */
+
+refresh();
+
+
+/* AUTO REFRESH EVERY 5 SECONDS */
+
+setInterval(refresh, 5000);
+
+
+/* =====================================================
+   RDRS BUTTON FIX
+   Refresh Incidents
+===================================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const refreshBtn =
+        document.getElementById("refreshIncidentsBtn");
+
+    if (refreshBtn) {
+
+        refreshBtn.addEventListener("click", function (event) {
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            console.log("🔄 Refresh Incidents clicked");
+
+            if (typeof loadIncidents === "function") {
+                loadIncidents();
+            }
+
+        });
+
+    }
+
+});
+
+
+/* =====================================================
+   RDRS VIEW DETAILS BY ID
+===================================================== */
+
+function viewDetailsById(incidentId) {
+
+    console.log("🔎 View Details clicked:", incidentId);
+
+    fetch("/api/incidents?_=" + Date.now(), {
+        cache: "no-store"
+    })
+    .then(function (response) {
+
+        if (!response.ok) {
+            throw new Error("Failed to load incident");
+        }
+
+        return response.json();
+
+    })
+    .then(function (incidents) {
+
+        const incident =
+            incidents.find(function (item) {
+                return item.incident_id === incidentId;
+            });
+
+        if (!incident) {
+
+            console.error(
+                "Incident not found:",
+                incidentId
+            );
+
+            alert("Incident details not found.");
+            return;
+        }
+
+        viewDetails(incident);
+
+    })
+    .catch(function (error) {
+
+        console.error(
+            "❌ View Details error:",
+            error
+        );
+
+        alert(
+            "Unable to load incident details."
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   RDRS — VIEW DETAILS + REFRESH BUTTON FIX ONLY
+========================================================= */
+
+document.addEventListener("click", function (event) {
+
+    /* ---------- VIEW DETAILS ---------- */
+
+    const detailsButton =
+        event.target.closest("#incidents button");
+
+    if (
+        detailsButton &&
+        detailsButton.textContent.includes("VIEW DETAILS")
+    ) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        console.log("🔎 VIEW DETAILS BUTTON CLICKED");
+
+        const card =
+            detailsButton.closest("div[style*='border-left']");
+
+        if (!card) {
+            console.error("❌ Incident card not found");
+            return;
+        }
+
+        const buttons =
+            document.querySelectorAll(
+                "#incidents button"
+            );
+
+        const allCards =
+            document.querySelectorAll(
+                "#incidents > div"
+            );
+
+        let incidentId = null;
+
+        /*
+         * Find incident ID from the button's
+         * existing onclick attribute.
+         */
+
+        const onclick =
+            detailsButton.getAttribute("onclick");
+
+        if (onclick) {
+
+            const match =
+                onclick.match(
+                    /viewDetailsById\(['"]([^'"]+)['"]\)/
+                );
+
+            if (match) {
+                incidentId = match[1];
+            }
+
+        }
+
+        if (!incidentId) {
+
+            console.error(
+                "❌ Incident ID could not be detected"
+            );
+
+            return;
+        }
+
+        console.log(
+            "🔎 Incident ID:",
+            incidentId
+        );
+
+        if (
+            typeof window.viewDetailsById ===
+            "function"
+        ) {
+
+            window.viewDetailsById(
+                incidentId
+            );
+
+        } else if (
+            typeof viewDetailsById ===
+            "function"
+        ) {
+
+            viewDetailsById(
+                incidentId
+            );
+
+        } else {
+
+            console.error(
+                "❌ viewDetailsById function not available"
+            );
+
+        }
+
+        return;
+    }
+
+
+    /* ---------- REFRESH INCIDENTS ---------- */
+
+    const refreshButton =
+        event.target.closest(
+            "#refreshIncidentsBtn"
+        );
+
+    if (refreshButton) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        console.log(
+            "🔄 REFRESH INCIDENTS BUTTON CLICKED"
+        );
+
+        if (
+            typeof window.loadIncidents ===
+            "function"
+        ) {
+
+            window.loadIncidents();
+
+        } else if (
+            typeof loadIncidents ===
+            "function"
+        ) {
+
+            loadIncidents();
+
+        } else {
+
+            console.error(
+                "❌ loadIncidents function not available"
+            );
+
+        }
+
+    }
+
+});
+
+console.log(
+    "✅ RDRS button fix loaded: View Details + Refresh"
+);
+

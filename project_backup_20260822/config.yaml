@@ -1,0 +1,33 @@
+monitoring:
+  watch_folders:
+    - "./data/sandbox"
+  poll_interval_seconds: 1
+
+entropy:
+  sample_bytes: 65536
+  high_entropy_threshold: 7.0
+
+detection_window:
+  window_seconds: 60
+  files_modified_per_minute_threshold: 20
+  rename_count_threshold: 10
+  extension_change_threshold: 10
+
+scoring:
+  weights:
+    rapid_encryption: 40
+    mass_rename: 30
+    high_entropy: 25
+    cpu_spike: 15
+    unknown_program: 10
+  levels:
+    normal_max: 40
+    warning_max: 70
+
+response:
+  simulation_mode: true
+  quarantine_folder: "./data/quarantine"
+
+logging:
+  log_dir: "./logs"
+  level: "INFO"

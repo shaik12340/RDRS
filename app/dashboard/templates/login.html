@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RDRS | Secure Login</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            background:
+                radial-gradient(circle at top, #172554 0%, #0f172a 45%, #020617 100%);
+            color: #f8fafc;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 420px;
+            padding: 20px;
+        }
+
+        .login-card {
+            background: rgba(15, 23, 42, 0.96);
+            border: 1px solid #334155;
+            border-radius: 18px;
+            padding: 38px;
+            box-shadow: 0 25px 70px rgba(0,0,0,.45);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-icon {
+            font-size: 48px;
+        }
+
+        .logo h1 {
+            margin: 8px 0 5px;
+            letter-spacing: 2px;
+        }
+
+        .logo p {
+            margin: 0;
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        label {
+            display: block;
+            margin: 18px 0 7px;
+            color: #cbd5e1;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            border-radius: 9px;
+            border: 1px solid #475569;
+            background: #1e293b;
+            color: white;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59,130,246,.15);
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 13px;
+            border: 0;
+            border-radius: 9px;
+            background: #2563eb;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .error {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            background: rgba(239,68,68,.12);
+            border: 1px solid #7f1d1d;
+            color: #fca5a5;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .status {
+            margin-top: 25px;
+            text-align: center;
+            color: #22c55e;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <div class="login-card">
+
+        <div class="logo">
+            <div class="logo-icon">🛡️</div>
+
+            <h1>RDRS</h1>
+
+            <p>
+                Ransomware Detection & Response System
+            </p>
+        </div>
+
+        <form method="POST" action="/login">
+
+            <label>USERNAME</label>
+
+            <input
+                type="text"
+                name="username"
+                placeholder="Enter username"
+                required
+                autocomplete="username"
+            >
+
+            <label>PASSWORD</label>
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter password"
+                required
+                autocomplete="current-password"
+            >
+
+            <button type="submit">
+                🔐 SECURE LOGIN
+            </button>
+
+        </form>
+
+        {% if error %}
+        <div class="error">
+            ❌ {{ error }}
+        </div>
+        {% endif %}
+
+        <div class="status">
+            ● RDRS SYSTEM ONLINE
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

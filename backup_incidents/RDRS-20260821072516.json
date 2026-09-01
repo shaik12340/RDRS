@@ -1,0 +1,19 @@
+{
+    "incident_id": "RDRS-20260821072516",
+    "timestamp": "2026-08-21T07:25:16.927932",
+    "status": "OPEN",
+    "severity": "MEDIUM",
+    "risk_score": 40,
+    "risk_level": "MEDIUM",
+    "event_type": "CREATED",
+    "file": {
+        "path": "/home/kali/rdrs/test_data/status_test_4.txt",
+        "sha256": "280d1cf51fead92401bfd2d4de5b7ad1e96c9d298855120336be9f55f8cb5e80"
+    },
+    "risk_reasons": [
+        "4 file(s) modified"
+    ],
+    "response": {
+        "status": "no_action"
+    }
+}

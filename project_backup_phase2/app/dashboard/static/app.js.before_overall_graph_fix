@@ -1,0 +1,547 @@
+let incidentChart = null;
+
+
+/* ==========================================
+   LOAD SYSTEM STATUS
+========================================== */
+
+async function loadStatus() {
+
+    try {
+
+        const res = await fetch("/api/status");
+
+        if (!res.ok) {
+            throw new Error("Status API failed");
+        }
+
+        const data = await res.json();
+
+        const statistics = data.statistics || {};
+
+        document.getElementById("health").innerText = "100%";
+        document.getElementById("risk").innerText =
+            statistics.critical || 0;
+
+        document.getElementById("quarantine").innerText =
+            statistics.quarantined || 0;
+
+        document.getElementById("incidents").innerText =
+            statistics.total_incidents || 0;
+
+    } catch (error) {
+
+        console.error("Status error:", error);
+
+    }
+}
+
+
+/* ==========================================
+   LOAD INCIDENTS
+========================================== */
+
+async function loadIncidents() {
+
+    try {
+
+        const res = await fetch("/api/incidents");
+
+        if (!res.ok) {
+            throw new Error("Incident API failed");
+        }
+
+        const data = await res.json();
+
+        let html = "";
+
+        if (data.length === 0) {
+
+            html = "<tr><td colspan='3'>No Incidents</td></tr>";
+
+        } else {
+
+            data.forEach(function(i) {
+
+                html += `
+                <tr>
+                    <td>${i.incident_id}</td>
+                    <td>${i.risk_level}</td>
+                    <td>${i.status}</td>
+                </tr>
+                `;
+
+            });
+
+        }
+
+        const table = document.getElementById("incidentTable");
+
+        if (table) {
+            table.innerHTML = html;
+        }
+
+
+        /* UPDATE CIRCLE GRAPH */
+
+        updateIncidentChart(data);
+
+
+    } catch (error) {
+
+        console.error("Incident error:", error);
+
+    }
+}
+
+
+/* ==========================================
+   INCIDENT DONUT GRAPH
+========================================== */
+
+function updateIncidentChart(incidents) {
+
+    const canvas = document.getElementById("incidentChart");
+
+    if (!canvas) {
+
+        console.error("incidentChart canvas not found");
+
+        return;
+    }
+
+
+    /* Count incidents by risk level */
+
+    let critical = 0;
+    let high = 0;
+    let medium = 0;
+    let low = 0;
+
+    incidents.forEach(function(incident) {
+
+        const level =
+            String(incident.risk_level || "")
+            .toUpperCase();
+
+        if (level === "CRITICAL") {
+            critical++;
+
+        } else if (level === "HIGH") {
+            high++;
+
+        } else if (level === "MEDIUM") {
+            medium++;
+
+        } else if (level === "LOW") {
+            low++;
+        }
+
+    });
+
+
+    /* Destroy previous chart */
+
+    if (incidentChart) {
+
+        incidentChart.destroy();
+
+        incidentChart = null;
+
+    }
+
+
+    /* Create donut */
+
+    incidentChart = new Chart(canvas, {
+
+        type: "doughnut",
+
+        data: {
+
+            labels: [
+                "Critical",
+                "High",
+                "Medium",
+                "Low"
+            ],
+
+            datasets: [{
+
+                data: [
+                    critical,
+                    high,
+                    medium,
+                    low
+                ],
+
+                backgroundColor: [
+                    "#ef4444",
+                    "#f97316",
+                    "#eab308",
+                    "#22c55e"
+                ],
+
+                borderColor: "#0f172a",
+
+                borderWidth: 4,
+
+                hoverOffset: 10
+
+            }]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            cutout: "65%",
+
+            plugins: {
+
+                legend: {
+
+                    position: "bottom",
+
+                    labels: {
+
+                        color: "#cbd5e1",
+
+                        padding: 18,
+
+                        font: {
+
+                            size: 13,
+
+                            weight: "bold"
+
+                        }
+
+                    }
+
+                },
+
+                tooltip: {
+
+                    callbacks: {
+
+                        label: function(context) {
+
+                            return (
+                                " " +
+                                context.label +
+                                ": " +
+                                context.raw
+                            );
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    });
+
+}
+
+
+/* ==========================================
+   REFRESH DASHBOARD
+========================================== */
+
+async function refresh() {
+
+    await loadStatus();
+
+    await loadIncidents();
+
+}
+
+
+/* INITIAL LOAD */
+
+refresh();
+
+
+/* AUTO REFRESH EVERY 5 SECONDS */
+
+setInterval(refresh, 5000);
+
+    
+let rdrsCircleChart = null;
+
+async function loadCircleGraph() {
+
+    const response = await fetch("/api/incidents");
+    const incidents = await response.json();
+
+    let low = 0;
+    let medium = 0;
+    let high = 0;
+    let critical = 0;
+
+    incidents.forEach(i => {
+
+        const level = String(i.risk_level || "").toUpperCase();
+
+        if (level === "LOW") low++;
+        if (level === "MEDIUM") medium++;
+        if (level === "HIGH") high++;
+        if (level === "CRITICAL") critical++;
+
+    });
+
+    const canvas = document.getElementById("rdrsCircleChart");
+
+    if (!canvas) return;
+
+    if (rdrsCircleChart) {
+        rdrsCircleChart.destroy();
+    }
+
+    rdrsCircleChart = new Chart(canvas, {
+
+        type: "doughnut",
+
+        data: {
+            labels: ["Low", "Medium", "High", "Critical"],
+
+            datasets: [{
+                data: [low, medium, high, critical],
+
+                backgroundColor: [
+                    "#22c55e",
+                    "#eab308",
+                    "#f97316",
+                    "#ef4444"
+                ],
+
+                borderWidth: 3,
+                borderColor: "#0f172a"
+            }]
+        },
+
+        options: {
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            cutout: "65%",
+
+            plugins: {
+                legend: {
+                    position: "bottom",
+
+                    labels: {
+                        color: "#ffffff"
+                    }
+                }
+            }
+        }
+
+    });
+}
+
+loadCircleGraph();
+
+setInterval(loadCircleGraph, 5000);
+
+
+
+
+/* ==========================================
+   OVERALL SECURITY STATUS
+========================================== */
+
+
+/* ==========================================
+   OVERALL SECURITY STATUS GRAPH
+========================================== */
+
+
+/* ==========================================
+   RDRS OVERALL SECURITY STATUS
+========================================== */
+
+
+
+
+
+/* =========================================================
+   RDRS OVERALL SECURITY STATUS
+   Uses /api/status - same source as dashboard counters
+========================================================= */
+
+async function loadOverallSecurityStatus() {
+
+    try {
+
+        const response = await fetch(
+            "/api/status",
+            { cache: "no-store" }
+        );
+
+        if (!response.ok) {
+            throw new Error("Status API failed");
+        }
+
+        const data = await response.json();
+
+        const stats = data.statistics || {};
+
+        const total =
+            Number(stats.total_incidents || 0);
+
+        const open =
+            Number(stats.open || 0);
+
+        const investigating =
+            Number(stats.investigating || 0);
+
+        const contained =
+            Number(stats.contained || 0);
+
+        const closed =
+            Number(stats.closed || 0);
+
+
+        /* Center */
+
+        const totalEl =
+            document.getElementById("overallTotal");
+
+        if (totalEl) {
+            totalEl.textContent = total;
+        }
+
+
+        /* Legend */
+
+        const openEl =
+            document.getElementById("overallOpen");
+
+        const investigatingEl =
+            document.getElementById("overallInvestigating");
+
+        const containedEl =
+            document.getElementById("overallContained");
+
+        const closedEl =
+            document.getElementById("overallClosed");
+
+
+        if (openEl)
+            openEl.textContent = open;
+
+        if (investigatingEl)
+            investigatingEl.textContent =
+                investigating;
+
+        if (containedEl)
+            containedEl.textContent =
+                contained;
+
+        if (closedEl)
+            closedEl.textContent =
+                closed;
+
+
+        /* Circle */
+
+        const circle =
+            document.getElementById("overallCircle");
+
+        if (!circle) {
+            console.error(
+                "❌ overallCircle not found"
+            );
+            return;
+        }
+
+
+        /* No incidents */
+
+        if (total === 0) {
+
+            circle.style.background =
+                "#334155";
+
+            return;
+        }
+
+
+        /* Calculate percentages */
+
+        const openDeg =
+            (open / total) * 360;
+
+        const investigatingDeg =
+            (investigating / total) * 360;
+
+        const containedDeg =
+            (contained / total) * 360;
+
+
+        const p1 =
+            openDeg;
+
+        const p2 =
+            p1 + investigatingDeg;
+
+        const p3 =
+            p2 + containedDeg;
+
+
+        circle.style.background =
+            `conic-gradient(
+                #3b82f6 0deg ${p1}deg,
+                #eab308 ${p1}deg ${p2}deg,
+                #a855f7 ${p2}deg ${p3}deg,
+                #22c55e ${p3}deg 360deg
+            )`;
+
+
+        console.log(
+            "RDRS Overall Graph:",
+            {
+                total,
+                open,
+                investigating,
+                contained,
+                closed
+            }
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "❌ Overall Security Graph:",
+            error
+        );
+
+    }
+
+}
+
+
+/* Initial */
+
+loadOverallSecurityStatus();
+
+
+/* Live */
+
+setInterval(
+    loadOverallSecurityStatus,
+    5000
+);
+

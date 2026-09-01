@@ -1,0 +1,527 @@
+from fastapi import FastAPI
+from fastapi.responses import HTMLResponse, FileResponse
+from pathlib import Path
+import json
+
+
+from app.detectors.ransomware import RansomwareDetector
+from app.detectors.risk_engine import RiskEngine
+from app.reports.alert_manager import AlertManager
+
+
+# ==========================================
+# FASTAPI APPLICATION
+# ==========================================
+
+app = FastAPI(
+    title="RDRS",
+    description="Ransomware Detection and Response System",
+    version="1.0.0"
+)
+
+
+# ==========================================
+# RDRS COMPONENTS
+# ==========================================
+
+detector = RansomwareDetector(
+    "/home/kali/rdrs/test_data"
+)
+
+risk_engine = RiskEngine()
+alert_manager = AlertManager()
+
+
+# ==========================================
+# ROOT
+# ==========================================
+
+@app.get("/")
+def root():
+
+    return {
+        "status": "online",
+        "message": "RDRS is running",
+        "version": "1.0.0"
+    }
+
+
+# ==========================================
+# HEALTH CHECK
+# ==========================================
+
+@app.get("/health")
+def health():
+
+    return {
+        "status": "healthy",
+        "service": "RDRS"
+    }
+
+
+# ==========================================
+# FILE SCAN
+# ==========================================
+
+@app.get("/scan")
+def scan():
+
+    return detector.scan()
+
+
+# ==========================================
+# CREATE BASELINE
+# ==========================================
+
+@app.post("/baseline")
+def create_baseline():
+
+    return detector.create_baseline()
+
+
+# ==========================================
+# GET ALL INCIDENTS
+# ==========================================
+
+@app.get("/api/incidents")
+def get_incidents():
+
+    incident_dir = Path("incidents")
+
+    incidents = []
+
+    if not incident_dir.exists():
+
+        return incidents
+
+
+    for file in incident_dir.glob("*.json"):
+
+        try:
+
+            with open(file, "r") as f:
+
+                incident = json.load(f)
+
+                incidents.append(incident)
+
+        except Exception:
+
+            continue
+
+
+    incidents.sort(
+        key=lambda x: x.get(
+            "timestamp",
+            ""
+        ),
+        reverse=True
+    )
+
+
+    return incidents
+
+
+# ==========================================
+# GET SINGLE INCIDENT
+# ==========================================
+
+@app.get("/api/incidents/{incident_id}")
+def get_incident(incident_id: str):
+
+    incident_file = (
+        Path("incidents") /
+        f"{incident_id}.json"
+    )
+
+
+    if not incident_file.exists():
+
+        return {
+
+            "status": "error",
+
+            "message":
+                "Incident not found",
+
+            "incident_id":
+                incident_id
+
+        }
+
+
+    try:
+
+        with open(
+            incident_file,
+            "r"
+        ) as f:
+
+            incident = json.load(f)
+
+
+        return incident
+
+
+    except Exception as e:
+
+        return {
+
+            "status": "error",
+
+            "message": str(e)
+
+        }
+
+
+# ==========================================
+# SYSTEM STATUS
+# ==========================================
+
+@app.get("/api/status")
+def api_status():
+
+    incident_dir = Path("incidents")
+
+    total_incidents = 0
+    open_incidents = 0
+    investigating = 0
+    contained = 0
+    closed = 0
+    critical_incidents = 0
+    quarantined = 0
+
+
+    if incident_dir.exists():
+
+        for file in incident_dir.glob("*.json"):
+
+            try:
+
+                with open(file, "r") as f:
+
+                    incident = json.load(f)
+
+
+                total_incidents += 1
+
+
+                status = incident.get(
+                    "status",
+                    "OPEN"
+                )
+
+
+                if status == "OPEN":
+
+                    open_incidents += 1
+
+                elif status == "INVESTIGATING":
+
+                    investigating += 1
+
+                elif status == "CONTAINED":
+
+                    contained += 1
+
+                elif status == "CLOSED":
+
+                    closed += 1
+
+
+                if incident.get(
+                    "risk_level"
+                ) == "CRITICAL":
+
+                    critical_incidents += 1
+
+
+                response = incident.get(
+                    "response",
+                    {}
+                )
+
+
+                if response.get(
+                    "status"
+                ) == "quarantined":
+
+                    quarantined += 1
+
+
+            except Exception:
+
+                continue
+
+
+    return {
+
+        "system": "RDRS",
+
+        "status": "online",
+
+        "version": "1.0.0",
+
+        "monitoring_directory":
+            "/home/kali/rdrs/test_data",
+
+        "statistics": {
+
+            "total_incidents":
+                total_incidents,
+
+            "open":
+                open_incidents,
+
+            "investigating":
+                investigating,
+
+            "contained":
+                contained,
+
+            "closed":
+                closed,
+
+            "critical":
+                critical_incidents,
+
+            "quarantined":
+                quarantined
+
+        }
+
+    }
+
+
+# ==========================================
+# UPDATE INCIDENT STATUS
+# ==========================================
+
+@app.put(
+    "/api/incidents/{incident_id}/status"
+)
+def update_incident_status(
+    incident_id: str,
+    status: str
+):
+
+    allowed_statuses = [
+
+        "OPEN",
+        "INVESTIGATING",
+        "CONTAINED",
+        "CLOSED"
+
+    ]
+
+
+    status = status.upper()
+
+
+    if status not in allowed_statuses:
+
+        return {
+
+            "status": "error",
+
+            "message":
+                "Invalid incident status",
+
+            "allowed_statuses":
+                allowed_statuses
+
+        }
+
+
+    incident_file = (
+        Path("incidents") /
+        f"{incident_id}.json"
+    )
+
+
+    if not incident_file.exists():
+
+        return {
+
+            "status": "error",
+
+            "message":
+                "Incident not found",
+
+            "incident_id":
+                incident_id
+
+        }
+
+
+    try:
+
+        with open(
+            incident_file,
+            "r"
+        ) as f:
+
+            incident = json.load(f)
+
+
+        old_status = incident.get(
+            "status",
+            "OPEN"
+        )
+
+
+        incident["status"] = status
+
+
+        if "status_history" not in incident:
+
+            incident["status_history"] = []
+
+
+        incident["status_history"].append({
+
+            "from": old_status,
+
+            "to": status
+
+        })
+
+
+        with open(
+            incident_file,
+            "w"
+        ) as f:
+
+            json.dump(
+                incident,
+                f,
+                indent=4
+            )
+
+
+        return {
+
+            "status": "success",
+
+            "incident_id":
+                incident_id,
+
+            "old_status":
+                old_status,
+
+            "new_status":
+                status
+
+        }
+
+
+    except Exception as e:
+
+        return {
+
+            "status": "error",
+
+            "message": str(e)
+
+        }
+
+
+# ==========================================
+# DASHBOARD
+# ==========================================
+
+@app.get(
+    "/dashboard",
+    response_class=HTMLResponse
+)
+def dashboard():
+
+    html_file = Path(
+        "app/dashboard/templates/index.html"
+    )
+
+
+    if not html_file.exists():
+
+        return """
+
+        <h1>RDRS Dashboard Error</h1>
+
+        <p>
+        Dashboard HTML file not found.
+        </p>
+
+        """
+
+
+    return html_file.read_text(
+        encoding="utf-8"
+    )
+
+
+# ==========================================
+# FAVICON
+# ==========================================
+
+@app.get("/favicon.ico")
+def favicon():
+
+    favicon_file = Path(
+        "app/dashboard/static/favicon.ico"
+    )
+
+
+    if favicon_file.exists():
+
+        return FileResponse(
+            favicon_file
+        )
+
+
+    return {
+        "status": "no favicon"
+    }
+
+
+# ==========================================
+# API INFORMATION
+# ==========================================
+
+@app.get("/api")
+def api_info():
+
+    return {
+
+        "name": "RDRS API",
+
+        "version": "1.0.0",
+
+        "endpoints": {
+
+            "health":
+                "GET /health",
+
+            "scan":
+                "GET /scan",
+
+            "baseline":
+                "POST /baseline",
+
+            "incidents":
+                "GET /api/incidents",
+
+            "single_incident":
+                "GET /api/incidents/{incident_id}",
+
+            "system_status":
+                "GET /api/status",
+
+            "update_status":
+                "PUT /api/incidents/{incident_id}/status",
+
+            "dashboard":
+                "GET /dashboard"
+
+        }
+
+    }

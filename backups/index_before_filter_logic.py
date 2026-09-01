@@ -1,0 +1,1815 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RDRS Security Dashboard</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+        }
+
+        header {
+            background: #111827;
+            padding: 20px 30px;
+            border-bottom: 1px solid #374151;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        header p {
+            color: #94a3b8;
+        }
+
+        .container {
+            padding: 25px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .scanner {
+            background: #1e293b;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        .scanner h2 {
+            margin-top: 0;
+        }
+
+        input[type="file"] {
+            margin: 15px 0;
+            padding: 10px;
+            background: #334155;
+            color: white;
+            border-radius: 6px;
+            width: 100%;
+        }
+
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 4px;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        button:disabled {
+            background: #475569;
+            cursor: not-allowed;
+        }
+
+        .details-btn {
+            background: #7c3aed;
+        }
+
+        .quarantine {
+            color: #ef4444;
+            font-weight: bold;
+        }
+
+        #selectedFiles {
+            color: #cbd5e1;
+            margin: 10px 0;
+        }
+
+        .result {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 15px;
+            border-left: 4px solid #334155;
+        }
+
+        .result h3 {
+            margin-top: 0;
+        }
+
+        .LOW {
+            color: #22c55e;
+            font-weight: bold;
+        }
+
+        .MEDIUM {
+            color: #eab308;
+            font-weight: bold;
+        }
+
+        .HIGH {
+            color: #fb923c;
+            font-weight: bold;
+        }
+
+        .CRITICAL {
+            color: #ef4444;
+            font-weight: bold;
+        }
+
+        .hash {
+            font-family: monospace;
+            font-size: 12px;
+            word-break: break-all;
+            background: #0f172a;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .reason {
+            margin: 6px 0;
+            color: #fbbf24;
+        }
+
+        .success {
+            color: #22c55e;
+        }
+
+        .error {
+            color: #ef4444;
+        }
+
+        .info {
+            color: #38bdf8;
+        }
+
+        .incident {
+            color: #cbd5e1;
+            font-family: monospace;
+            font-size: 13px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #64748b;
+        }
+
+        /* MODAL */
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.75);
+            overflow: auto;
+        }
+
+        .modal-content {
+            background: #1e293b;
+            margin: 5% auto;
+            padding: 25px;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 12px;
+            border: 1px solid #475569;
+        }
+
+        .close {
+            float: right;
+            font-size: 28px;
+            cursor: pointer;
+            color: #94a3b8;
+        }
+
+        .close:hover {
+            color: white;
+        }
+
+        .detail-row {
+            padding: 10px 0;
+            border-bottom: 1px solid #374151;
+        }
+
+        .detail-label {
+            color: #94a3b8;
+            font-weight: bold;
+        }
+
+        .history {
+            background: #0f172a;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 700px) {
+
+            .container {
+                padding: 15px;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+            }
+
+        }
+
+    </style>
+
+
+<style>
+.soc-incidents {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.soc-card {
+    background: #111827;
+    border: 1px solid #374151;
+    border-left: 6px solid #6b7280;
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.25);
+}
+
+.soc-card.critical { border-left-color: #ef4444; }
+.soc-card.high { border-left-color: #f97316; }
+.soc-card.medium { border-left-color: #eab308; }
+.soc-card.low { border-left-color: #22c55e; }
+
+.soc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.soc-id {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.soc-level {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.soc-level.critical {
+    background: #7f1d1d;
+    color: #fecaca;
+}
+
+.soc-level.high {
+    background: #7c2d12;
+    color: #fed7aa;
+}
+
+.soc-level.medium {
+    background: #713f12;
+    color: #fef08a;
+}
+
+.soc-level.low {
+    background: #14532d;
+    color: #bbf7d0;
+}
+
+.soc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.soc-item {
+    background: #0b1220;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.soc-label {
+    color: #9ca3af;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.soc-value {
+    margin-top: 4px;
+    font-weight: 600;
+    word-break: break-word;
+}
+
+.soc-reasons {
+    margin-top: 15px;
+    padding: 12px;
+    background: #0b1220;
+    border-radius: 8px;
+}
+
+.soc-reasons ul {
+    margin: 8px 0 0 20px;
+}
+
+.soc-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.soc-btn {
+    border: 0;
+    border-radius: 7px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+}
+
+.btn-open { background: #2563eb; }
+.btn-investigating { background: #ca8a04; }
+.btn-contained { background: #7c3aed; }
+.btn-closed { background: #15803d; }
+
+.soc-btn:hover {
+    opacity: .8;
+}
+
+.soc-empty {
+    padding: 25px;
+    text-align: center;
+    color: #9ca3af;
+}
+</style>
+
+</head>
+
+
+<body>
+
+<header>
+
+    <h1>🛡️ RDRS Security Dashboard</h1>
+
+    <p>
+        Real-Time Ransomware Detection & Response System
+    </p>
+
+    <p class="success">
+        ● SYSTEM ONLINE
+    </p>
+
+</header>
+
+
+<div class="container">
+
+    <!-- FILE SCANNER -->
+
+    <div class="scanner">
+
+        <h2>📁 RDRS File Scanner</h2>
+
+        <p>
+            Select one or multiple files from your computer
+            and scan them for ransomware indicators.
+        </p>
+
+        <input
+            type="file"
+            id="fileInput"
+            multiple
+        >
+
+        <div id="selectedFiles">
+            No files selected.
+        </div>
+
+        <button
+            id="scanButton"
+            onclick="scanFiles()"
+        >
+            🔍 SCAN FILES
+        </button>
+
+        <div id="message"></div>
+
+    </div>
+
+
+    <!-- RESULTS -->
+
+    <div id="results"></div>
+<div class="scanner">
+
+    
+<div id="incidentStats" style="
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:15px;
+    margin:20px 0;
+">
+
+    <div class="stat-card">
+        <div class="stat-title">TOTAL INCIDENTS</div>
+        <div id="totalIncidents" class="stat-number">0</div>
+    </div>
+
+    <div class="stat-card critical">
+        <div class="stat-title">CRITICAL</div>
+        <div id="criticalIncidents" class="stat-number">0</div>
+    </div>
+
+    <div class="stat-card high">
+        <div class="stat-title">HIGH</div>
+        <div id="highIncidents" class="stat-number">0</div>
+    </div>
+
+    <div class="stat-card medium">
+        <div class="stat-title">MEDIUM</div>
+        <div id="mediumIncidents" class="stat-number">0</div>
+    </div>
+
+    <div class="stat-card low">
+        <div class="stat-title">LOW</div>
+        <div id="lowIncidents" class="stat-number">0</div>
+    </div>
+
+    <div class="stat-card quarantined">
+        <div class="stat-title">QUARANTINED</div>
+        <div id="quarantinedIncidents" class="stat-number">0</div>
+    </div>
+
+</div>
+
+<style>
+.stat-card {
+    background:#111827;
+    border:1px solid #374151;
+    border-radius:12px;
+    padding:18px;
+    text-align:center;
+    box-shadow:0 4px 12px rgba(0,0,0,.25);
+}
+
+.stat-title {
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:1px;
+    color:#9ca3af;
+}
+
+.stat-number {
+    font-size:30px;
+    font-weight:bold;
+    margin-top:8px;
+}
+
+.critical {
+    border-color:#ef4444;
+}
+
+.critical .stat-number {
+    color:#ef4444;
+}
+
+.high {
+    border-color:#f97316;
+}
+
+.high .stat-number {
+    color:#f97316;
+}
+
+.medium {
+    border-color:#eab308;
+}
+
+.medium .stat-number {
+    color:#eab308;
+}
+
+.low {
+    border-color:#22c55e;
+}
+
+.low .stat-number {
+    color:#22c55e;
+}
+
+.quarantined {
+    border-color:#a855f7;
+}
+
+.quarantined .stat-number {
+    color:#a855f7;
+}
+</style>
+
+<h2>🚨 Recent Security Incidents</h2>
+
+<div style="display:flex; gap:10px; margin:15px 0; flex-wrap:wrap;">
+
+    <button onclick="loadIncidents()">
+        🔄 REFRESH INCIDENTS
+    </button>
+
+    <button
+        onclick="cleanSystem()"
+        style="
+            background:#dc2626;
+            color:white;
+            border:none;
+            padding:10px 16px;
+            border-radius:8px;
+            cursor:pointer;
+            font-weight:bold;
+        "
+    >
+        🧹 CLEAN SYSTEM
+    </button>
+
+</div>
+
+<div style="
+    display:flex;
+    gap:10px;
+    margin:15px 0;
+    flex-wrap:wrap;
+    background:#0f172a;
+    padding:15px;
+    border-radius:10px;
+    border:1px solid #374151;
+">
+
+    <input
+        id="incidentSearch"
+        type="text"
+        placeholder="🔍 Search incident or filename..."
+        oninput="filterIncidents()"
+        style="
+            flex:1;
+            min-width:220px;
+            padding:10px;
+            border-radius:8px;
+            border:1px solid #4b5563;
+            background:#111827;
+            color:white;
+        "
+    >
+
+    <select
+        id="riskFilter"
+        onchange="filterIncidents()"
+        style="
+            padding:10px;
+            border-radius:8px;
+            background:#111827;
+            color:white;
+            border:1px solid #4b5563;
+        "
+    >
+        <option value="ALL">All Risk Levels</option>
+        <option value="CRITICAL">Critical</option>
+        <option value="HIGH">High</option>
+        <option value="MEDIUM">Medium</option>
+        <option value="LOW">Low</option>
+    </select>
+
+    <select
+        id="statusFilter"
+        onchange="filterIncidents()"
+        style="
+            padding:10px;
+            border-radius:8px;
+            background:#111827;
+            color:white;
+            border:1px solid #4b5563;
+        "
+    >
+        <option value="ALL">All Status</option>
+        <option value="OPEN">Open</option>
+        <option value="CONTAINED">Contained</option>
+    </select>
+
+</div>
+
+<div id="incidentMessage"></div>
+
+<div id="incidents"></div>
+
+</div>
+
+
+</div>
+
+
+<!-- DETAILS MODAL -->
+
+<div id="detailsModal" class="modal">
+
+    <div class="modal-content">
+
+        <span
+            class="close"
+            onclick="closeDetails()"
+        >
+            &times;
+        </span>
+
+        <h2>🔎 Incident Details</h2>
+
+        <div id="detailsContent"></div>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    RDRS — Ransomware Detection & Response System
+
+    <br><br>
+
+    Created by <strong>Shaik Riyan</strong>
+
+</footer>
+
+
+<script>
+
+const fileInput =
+    document.getElementById("fileInput");
+
+const selectedFiles =
+    document.getElementById("selectedFiles");
+
+const results =
+    document.getElementById("results");
+
+const message =
+    document.getElementById("message");
+
+
+/* ==========================================
+   FILE SELECTION
+========================================== */
+
+fileInput.addEventListener(
+    "change",
+    function () {
+
+        const files = fileInput.files;
+
+        if (files.length === 0) {
+
+            selectedFiles.innerText =
+                "No files selected.";
+
+            return;
+        }
+
+        selectedFiles.innerHTML =
+            `<strong>${files.length} file(s) selected:</strong><br>` +
+
+            Array.from(files)
+                .map(file =>
+                    `📄 ${escapeHtml(file.name)}
+                     — ${file.size} bytes`
+                )
+                .join("<br>");
+
+    }
+);
+
+
+/* ==========================================
+   SCAN FILES
+========================================== */
+
+async function scanFiles() {
+
+    const files = fileInput.files;
+
+    if (files.length === 0) {
+
+        alert(
+            "Please select at least one file."
+        );
+
+        return;
+    }
+
+    const button =
+        document.getElementById("scanButton");
+
+    button.disabled = true;
+
+    button.innerText =
+        "🔄 SCANNING...";
+
+    message.innerHTML =
+        `<p class="info">
+            🔄 Uploading and analyzing
+            ${files.length} file(s)...
+        </p>`;
+
+    results.innerHTML = "";
+
+    try {
+
+        for (const file of files) {
+
+            await scanSingleFile(file);
+
+        }
+
+        message.innerHTML =
+            `<p class="success">
+                ✅ Scan completed successfully.
+            </p>`;
+
+        await loadIncidents();
+
+    }
+
+    catch (error) {
+
+        message.innerHTML =
+            `<p class="error">
+                ❌ ${escapeHtml(error.message)}
+            </p>`;
+
+    }
+
+    finally {
+
+        button.disabled = false;
+
+        button.innerText =
+            "🔍 SCAN FILES";
+
+    }
+
+}
+
+
+/* ==========================================
+   SINGLE FILE SCAN
+========================================== */
+
+async function scanSingleFile(file) {
+
+    const formData =
+        new FormData();
+
+    formData.append(
+        "file",
+        file
+    );
+
+    const response =
+        await fetch(
+            "/api/upload",
+            {
+                method: "POST",
+                body: formData
+            }
+        );
+
+    const data =
+        await response.json();
+
+    if (!response.ok) {
+
+        throw new Error(
+            data.detail ||
+            "File scan failed"
+        );
+
+    }
+
+    displayResult(
+        data
+    );
+
+}
+
+
+/* ==========================================
+   DISPLAY RESULT
+========================================== */
+
+function displayResult(data) {
+
+    const result =
+        data.scan_result;
+
+    const incident =
+        data.incident;
+
+    const reasons =
+        result.risk_reasons &&
+        result.risk_reasons.length > 0
+
+        ?
+
+        result.risk_reasons
+            .map(reason =>
+                `<div class="reason">
+                    ⚠️ ${escapeHtml(reason)}
+                </div>`
+            )
+            .join("")
+
+        :
+
+        `<div class="success">
+            ✓ No suspicious indicators detected
+        </div>`;
+
+
+    const responseStatus =
+        incident.response?.status ||
+        "unknown";
+
+
+    const responseMessage =
+        incident.response?.message ||
+        "";
+
+
+    const resultBox =
+        document.createElement("div");
+
+    resultBox.className =
+        "result";
+
+
+    resultBox.innerHTML = `
+
+        <h3>
+            📄 ${escapeHtml(result.filename)}
+        </h3>
+
+        <p>
+            📦 <strong>Size:</strong>
+            ${result.size} bytes
+        </p>
+
+        <p>
+            📊 <strong>Entropy:</strong>
+            ${result.entropy}
+        </p>
+
+        <p>
+            🔐 <strong>SHA-256:</strong>
+        </p>
+
+        <div class="hash">
+            ${escapeHtml(result.sha256)}
+        </div>
+
+        <p>
+            🎯 <strong>Risk Score:</strong>
+            ${result.risk_score}/100
+        </p>
+
+        <p>
+            🚨 <strong>Risk Level:</strong>
+            <span class="${result.risk_level}">
+                ${escapeHtml(result.risk_level)}
+            </span>
+        </p>
+
+        <p>
+            🔎 <strong>Suspicious:</strong>
+            ${
+                result.suspicious
+                ? '<span class="CRITICAL">YES</span>'
+                : '<span class="success">NO</span>'
+            }
+        </p>
+
+        <p>
+            📝 <strong>Risk Reasons:</strong>
+        </p>
+
+        ${reasons}
+
+        <p>
+            🆔 <strong>Incident ID:</strong>
+        </p>
+
+        <div class="incident">
+            ${escapeHtml(incident.incident_id)}
+        </div>
+
+        <p>
+            ⚡ <strong>Event:</strong>
+            ${escapeHtml(incident.event_type)}
+        </p>
+
+        <p>
+            🛡️ <strong>Response:</strong>
+            <span class="${
+                responseStatus === "quarantined"
+                ? "CRITICAL"
+                : "success"
+            }">
+                ${escapeHtml(responseStatus)}
+            </span>
+        </p>
+
+        ${
+            responseMessage
+            ?
+            `<p>
+                ${escapeHtml(responseMessage)}
+             </p>`
+            :
+            ""
+        }
+
+        <button
+            class="details-btn"
+            onclick='viewDetails(${JSON.stringify(incident)})'
+        >
+            👁️ VIEW DETAILS
+        </button>
+
+    `;
+
+
+    results.appendChild(
+        resultBox
+    );
+
+}
+
+
+/* ==========================================
+   VIEW DETAILS
+========================================== */
+
+function viewDetails(incident) {
+
+    const modal =
+        document.getElementById(
+            "detailsModal"
+        );
+
+    const content =
+        document.getElementById(
+            "detailsContent"
+        );
+
+
+    const reasons =
+        incident.risk_reasons &&
+        incident.risk_reasons.length
+
+        ?
+
+        incident.risk_reasons
+            .map(reason =>
+                `<div class="reason">
+                    ⚠️ ${escapeHtml(reason)}
+                </div>`
+            )
+            .join("")
+
+        :
+
+        `<span class="success">
+            ✓ No suspicious indicators
+        </span>`;
+
+
+    let historyHtml =
+        `<div class="history">
+            No status history available.
+        </div>`;
+
+
+    if (
+        incident.status_history &&
+        incident.status_history.length
+    ) {
+
+        historyHtml =
+            `<div class="history">` +
+
+            incident.status_history
+                .map(item =>
+                    `<div>
+                        ${escapeHtml(item.from)}
+                        → 
+                        ${escapeHtml(item.to)}
+                    </div>`
+                )
+                .join("")
+
+            +
+
+            `</div>`;
+
+    }
+
+
+    content.innerHTML = `
+
+        <div class="detail-row">
+            <div class="detail-label">
+                🆔 Incident ID
+            </div>
+            ${escapeHtml(incident.incident_id)}
+        </div>
+
+        <div class="detail-row">
+            <div class="detail-label">
+                🕒 Timestamp
+            </div>
+            ${escapeHtml(incident.timestamp)}
+        </div>
+
+        <div class="detail-row">
+            <div class="detail-label">
+                📊 Status
+            </div>
+            ${escapeHtml(incident.status)}
+        </div>
+
+        <div class="detail-row">
+            <div class="detail-label">
+                🚨 Severity
+            </div>
+            <span class="${incident.risk_level}">
+                ${escapeHtml(incident.risk_level)}
+            </span>
+        </div>
+
+        <div class="detail-row">
+            <div class="detail-label">
+                🎯 Risk Score
+            </div>
+            ${incident.risk_score}/100
+        </div>
+
+        <div class="detail-row">
+            <div class="detail-label">
+                ⚡ Event Type
+            </div>
+            ${escapeHtml(incident.event_type)}
+        </div>
+
+        <div class="detail-row">
+            <div class="detail-label">
+                📄 File Name
+            </div>
+            ${escapeHtml(
+                incident.file?.name ||
+                "Unknown"
+            )}
+        </div>
+
+        <div class="detail-row">
+            <div class="detail-label">
+                📁 File Path
+            </div>
+            ${escapeHtml(
+                incident.file?.path ||
+                "Unknown"
+            )}
+        </div>
+
+        <div class="detail-row">
+            <div class="detail-label">
+                📦 File Size
+            </div>
+            ${incident.file?.size || 0} bytes
+        </div>
+
+        <div class="detail-row">
+            <div class="detail-label">
+                🔐 SHA-256
+            </div>
+
+            <div class="hash">
+                ${escapeHtml(
+                    incident.file?.sha256 ||
+                    "Unknown"
+                )}
+            </div>
+        </div>
+
+        <div class="detail-row">
+            <div class="detail-label">
+                📝 Risk Reasons
+            </div>
+
+            ${reasons}
+        </div>
+
+        <div class="detail-row">
+            <div class="detail-label">
+                🛡️ Response
+            </div>
+
+            ${escapeHtml(
+                incident.response?.status ||
+                "unknown"
+            )}
+        </div>
+
+        ${
+            incident.response?.quarantine_path
+
+            ?
+
+            `<div class="detail-row">
+                <div class="detail-label">
+                    🔒 Quarantine Path
+                </div>
+
+                ${escapeHtml(
+                    incident.response.quarantine_path
+                )}
+            </div>`
+
+            :
+
+            ""
+        }
+
+        <div class="detail-row">
+
+            <div class="detail-label">
+                📋 Status History
+            </div>
+
+            ${historyHtml}
+
+        </div>
+
+    `;
+
+
+    modal.style.display =
+        "block";
+
+}
+
+
+/* ==========================================
+   CLOSE DETAILS
+========================================== */
+
+function closeDetails() {
+
+    document.getElementById(
+        "detailsModal"
+    ).style.display = "none";
+
+}
+
+
+window.onclick =
+    function(event) {
+
+        const modal =
+            document.getElementById(
+                "detailsModal"
+            );
+
+        if (event.target === modal) {
+
+            modal.style.display =
+                "none";
+
+        }
+
+    };
+
+
+/* ==========================================
+   HTML SAFETY
+========================================== */
+
+function escapeHtml(value) {
+
+    if (value === null ||
+        value === undefined) {
+
+        return "";
+
+    }
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+</script>
+
+
+<script>
+async function loadIncidents() {
+
+    const container = document.getElementById("incidents");
+    const message = document.getElementById("incidentMessage");
+
+    container.innerHTML = "<p>🔄 Loading incidents...</p>";
+
+    try {
+        const response = await fetch("/api/incidents");
+
+        if (!response.ok) {
+            throw new Error("Failed to load incidents");
+        }
+
+        const incidents = await response.json();
+
+        if (!Array.isArray(incidents) || incidents.length === 0) {
+            container.innerHTML = "<p>✅ No incidents found.</p>";
+            return;
+        }
+
+        const uniqueIncidents = [];
+        const seen = new Set();
+
+        for (const incident of incidents) {
+            if (!incident || !incident.incident_id) continue;
+
+            if (seen.has(incident.incident_id)) continue;
+
+            seen.add(incident.incident_id);
+            uniqueIncidents.push(incident);
+        }
+
+        container.innerHTML = "";
+
+        uniqueIncidents.forEach(incident => {
+
+            const reasons =
+                Array.isArray(incident.risk_reasons) &&
+                incident.risk_reasons.length
+                    ? incident.risk_reasons.map(r => `<li>${r}</li>`).join("")
+                    : "<li>No suspicious indicators</li>";
+
+            container.innerHTML += `
+                <div class="result">
+
+                    <h3>🚨 ${incident.incident_id}</h3>
+
+                    <p>📄 <strong>File</strong><br>
+                    ${incident.file?.name || "Unknown"}</p>
+
+                    <p>🎯 <strong>Risk Score</strong><br>
+                    ${incident.risk_score ?? 0}/100</p>
+
+                    <p>🚨 <strong>Risk Level</strong><br>
+                    ${incident.risk_level || "LOW"}</p>
+
+                    <p>📌 <strong>Status</strong><br>
+                    ${incident.status || "OPEN"}</p>
+
+                    <p>⚡ <strong>Event</strong><br>
+                    ${incident.event_type || "UNKNOWN"}</p>
+
+                    <p>📊 <strong>Entropy</strong><br>
+                    ${incident.analysis?.entropy ?? "N/A"}</p>
+
+                    <p>🔎 <strong>Suspicious</strong><br>
+                    ${incident.analysis?.suspicious ? "YES" : "NO"}</p>
+
+                    <p>🛡️ <strong>Response</strong><br>
+                    ${incident.response?.status || "no_action"}</p>
+
+                    <p>🕒 <strong>Time</strong><br>
+                    ${incident.timestamp || "Unknown"}</p>
+
+                    <p>📝 <strong>Detection Reasons</strong></p>
+
+                    <ul>${reasons}</ul>
+
+                </div>
+            `;
+        });
+
+        message.innerHTML =
+            `✅ ${uniqueIncidents.length} unique incident(s) loaded.`;
+
+    } catch (error) {
+
+        console.error(error);
+
+        container.innerHTML =
+            "<p>❌ Failed to load security incidents.</p>";
+
+        message.innerHTML =
+            `<span style="color:red">${error.message}</span>`;
+    }
+}
+
+
+async function cleanSystem() {
+
+    const confirmed = confirm(
+        "⚠️ WARNING\n\n" +
+        "This will permanently clear the incident history.\n\n" +
+        "Quarantine files will NOT be deleted.\n\n" +
+        "Do you want to continue?"
+    );
+
+    if (!confirmed) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            "/api/incidents/clean",
+            {
+                method: "DELETE"
+            }
+        );
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(
+                result.detail || "Failed to clean system"
+            );
+        }
+
+        alert("✅ Incident history cleaned successfully.");
+
+        await loadIncidents();
+        await loadIncidentStats();
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "❌ Clean failed: " +
+            error.message
+        );
+    }
+}
+
+document.addEventListener("DOMContentLoaded", loadIncidents);
+
+
+</script>
+
+
+<script>
+async function loadIncidentStats() {
+
+    try {
+
+        const response = await fetch("/api/incidents");
+
+        const incidents = await response.json();
+
+        if (!Array.isArray(incidents)) {
+            return;
+        }
+
+        let critical = 0;
+        let high = 0;
+        let medium = 0;
+        let low = 0;
+        let quarantined = 0;
+
+        incidents.forEach(incident => {
+
+            const level = String(
+                incident.risk_level || "LOW"
+            ).toUpperCase();
+
+            if (level === "CRITICAL") {
+                critical++;
+            } else if (level === "HIGH") {
+                high++;
+            } else if (level === "MEDIUM") {
+                medium++;
+            } else {
+                low++;
+            }
+
+            const responseStatus =
+                incident.response &&
+                incident.response.status;
+
+            if (responseStatus === "quarantined") {
+                quarantined++;
+            }
+
+        });
+
+        document.getElementById(
+            "totalIncidents"
+        ).textContent = incidents.length;
+
+        document.getElementById(
+            "criticalIncidents"
+        ).textContent = critical;
+
+        document.getElementById(
+            "highIncidents"
+        ).textContent = high;
+
+        document.getElementById(
+            "mediumIncidents"
+        ).textContent = medium;
+
+        document.getElementById(
+            "lowIncidents"
+        ).textContent = low;
+
+        document.getElementById(
+            "quarantinedIncidents"
+        ).textContent = quarantined;
+
+    } catch (error) {
+
+        console.error(
+            "Failed to load incident statistics:",
+            error
+        );
+
+    }
+}
+
+loadIncidentStats();
+
+setInterval(
+    loadIncidentStats,
+    10000
+);
+</script>
+
+
+<script>
+
+async function loadSOCIncidents() {
+
+    const container = document.getElementById(
+        "socIncidents"
+    );
+
+    if (!container) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            "/api/incidents"
+        );
+
+        const incidents = await response.json();
+
+        if (!Array.isArray(incidents)) {
+
+            container.innerHTML =
+                '<div class="soc-empty">Unable to load incidents.</div>';
+
+            return;
+        }
+
+        if (incidents.length === 0) {
+
+            container.innerHTML =
+                '<div class="soc-empty">No security incidents found.</div>';
+
+            return;
+        }
+
+        container.innerHTML = incidents.map(
+            incident => {
+
+                const level = String(
+                    incident.risk_level || "LOW"
+                ).toLowerCase();
+
+                const file =
+                    incident.file || {};
+
+                const analysis =
+                    incident.analysis || {};
+
+                const response =
+                    incident.response || {};
+
+                const reasons =
+                    incident.risk_reasons || [];
+
+                const status =
+                    incident.status || "OPEN";
+
+                const score =
+                    incident.risk_score ?? 0;
+
+                const entropy =
+                    analysis.entropy ?? "N/A";
+
+                const suspicious =
+                    analysis.suspicious
+                        ? "YES"
+                        : "NO";
+
+                const fileName =
+                    file.name || "Unknown";
+
+                const event =
+                    incident.event_type ||
+                    "MODIFIED";
+
+                const time =
+                    incident.timestamp ||
+                    "Unknown";
+
+                const responseStatus =
+                    response.status ||
+                    "no_action";
+
+                const reasonHTML =
+                    reasons.length
+                    ? reasons.map(
+                        r => `<li>${escapeHTML(r)}</li>`
+                      ).join("")
+                    : "<li>No suspicious indicators</li>";
+
+                return `
+
+                <div class="soc-card ${level}">
+
+                    <div class="soc-header">
+
+                        <div class="soc-id">
+                            🚨 ${escapeHTML(
+                                incident.incident_id || "Unknown"
+                            )}
+                        </div>
+
+                        <div class="soc-level ${level}">
+                            ${escapeHTML(
+                                incident.risk_level || "LOW"
+                            )}
+                        </div>
+
+                    </div>
+
+                    <div class="soc-grid">
+
+                        <div class="soc-item">
+                            <div class="soc-label">
+                                File
+                            </div>
+                            <div class="soc-value">
+                                📄 ${escapeHTML(fileName)}
+                            </div>
+                        </div>
+
+                        <div class="soc-item">
+                            <div class="soc-label">
+                                Risk Score
+                            </div>
+                            <div class="soc-value">
+                                🎯 ${score}/100
+                            </div>
+                        </div>
+
+                        <div class="soc-item">
+                            <div class="soc-label">
+                                Status
+                            </div>
+                            <div class="soc-value">
+                                📌 ${escapeHTML(status)}
+                            </div>
+                        </div>
+
+                        <div class="soc-item">
+                            <div class="soc-label">
+                                Event
+                            </div>
+                            <div class="soc-value">
+                                ⚡ ${escapeHTML(event)}
+                            </div>
+                        </div>
+
+                        <div class="soc-item">
+                            <div class="soc-label">
+                                Entropy
+                            </div>
+                            <div class="soc-value">
+                                📊 ${entropy}
+                            </div>
+                        </div>
+
+                        <div class="soc-item">
+                            <div class="soc-label">
+                                Suspicious
+                            </div>
+                            <div class="soc-value">
+                                🔎 ${suspicious}
+                            </div>
+                        </div>
+
+                        <div class="soc-item">
+                            <div class="soc-label">
+                                Response
+                            </div>
+                            <div class="soc-value">
+                                🛡️ ${escapeHTML(responseStatus)}
+                            </div>
+                        </div>
+
+                        <div class="soc-item">
+                            <div class="soc-label">
+                                Time
+                            </div>
+                            <div class="soc-value">
+                                🕒 ${escapeHTML(time)}
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="soc-reasons">
+
+                        <strong>
+                            📝 Detection Reasons
+                        </strong>
+
+                        <ul>
+                            ${reasonHTML}
+                        </ul>
+
+                    </div>
+
+                    <div class="soc-actions">
+
+                        <button
+                            class="soc-btn btn-open"
+                            onclick="changeIncidentStatus(
+                                '${escapeJS(incident.incident_id)}',
+                                'OPEN'
+                            )">
+                            OPEN
+                        </button>
+
+                        <button
+                            class="soc-btn btn-investigating"
+                            onclick="changeIncidentStatus(
+                                '${escapeJS(incident.incident_id)}',
+                                'INVESTIGATING'
+                            )">
+                            INVESTIGATING
+                        </button>
+
+                        <button
+                            class="soc-btn btn-contained"
+                            onclick="changeIncidentStatus(
+                                '${escapeJS(incident.incident_id)}',
+                                'CONTAINED'
+                            )">
+                            CONTAINED
+                        </button>
+
+                        <button
+                            class="soc-btn btn-closed"
+                            onclick="changeIncidentStatus(
+                                '${escapeJS(incident.incident_id)}',
+                                'CLOSED'
+                            )">
+                            CLOSED
+                        </button>
+
+                    </div>
+
+                </div>
+
+                `;
+            }
+        ).join("");
+
+    } catch (error) {
+
+        console.error(
+            "SOC incident loading error:",
+            error
+        );
+
+        container.innerHTML =
+            '<div class="soc-empty">Failed to load incidents.</div>';
+    }
+}
+
+
+async function changeIncidentStatus(
+    incidentId,
+    newStatus
+) {
+
+    try {
+
+        const response = await fetch(
+            `/api/incidents/${encodeURIComponent(
+                incidentId
+            )}/status?status=${newStatus}`,
+            {
+                method: "PUT"
+            }
+        );
+
+        const result = await response.json();
+
+        if (result.status === "success") {
+
+            await loadSOCIncidents();
+
+            if (typeof loadIncidentStats === "function") {
+                await loadIncidentStats();
+            }
+
+        } else {
+
+            alert(
+                result.message ||
+                "Failed to update incident"
+            );
+
+        }
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Unable to update incident status"
+        );
+    }
+}
+
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
+
+
+function escapeJS(value) {
+
+    return String(value)
+        .replaceAll("\\", "\\\\")
+        .replaceAll("'", "\\'");
+}
+
+
+loadSOCIncidents();
+
+setInterval(
+    loadSOCIncidents,
+    10000
+);
+
+</script>
+
+</body>
+
+</html>

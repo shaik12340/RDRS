@@ -1,0 +1,65 @@
+import json
+import uuid
+from pathlib import Path
+from datetime import datetime
+
+from app.database.database import add_incident
+
+
+class IncidentManager:
+
+    def __init__(self):
+        pass
+
+    def create_incident(
+        self,
+        risk,
+        event_type,
+        file_path,
+        file_hash,
+        response_status
+    ):
+
+        timestamp = datetime.now()
+
+        incident_id = (
+            "RDRS-"
+            + timestamp.strftime("%Y%m%d%H%M%S%f")
+            + "-"
+            + uuid.uuid4().hex[:6]
+        )
+
+        incident_status = (
+            "CONTAINED"
+            if response_status == "quarantined"
+            else "OPEN"
+        )
+
+        path = Path(file_path)
+
+        incident = {
+            "incident_id": incident_id,
+            "timestamp": timestamp.isoformat(),
+            "status": incident_status,
+            "severity": risk["risk_level"],
+            "risk_score": risk["risk_score"],
+            "risk_level": risk["risk_level"],
+            "event_type": event_type,
+
+            "file": {
+                "name": path.name,
+                "path": str(path),
+                "sha256": file_hash
+            },
+
+            "risk_reasons": risk["reasons"],
+
+            "response": {
+                "status": response_status
+            }
+        }
+
+        # Save to the same database used by /api/incidents
+        add_incident(incident)
+
+        return incident

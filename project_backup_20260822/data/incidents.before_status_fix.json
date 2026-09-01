@@ -1,0 +1,130 @@
+[
+    {
+        "incident_id": "RDRS-20260821075852-16cf40",
+        "timestamp": "2026-08-21T07:58:52.714745",
+        "status": "OPEN",
+        "severity": "CRITICAL",
+        "risk_score": 100,
+        "risk_level": "CRITICAL",
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "b45b50790d904ca88d813e78c09fc1ac_critical_test.encrypted",
+            "path": "/home/kali/rdrs/uploads/b45b50790d904ca88d813e78c09fc1ac_critical_test.encrypted",
+            "size": 119,
+            "sha256": "582ad86ec37d956207b07f5f819e8943f9fece66516271ceb46145e06d42c50f"
+        },
+        "risk_reasons": [
+            "Suspicious filename indicator",
+            "Suspicious ransomware-like extension",
+            "Ransomware-related text indicator"
+        ],
+        "analysis": {
+            "entropy": 4.259,
+            "suspicious": true
+        },
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821075846-66b82c",
+        "timestamp": "2026-08-21T07:58:46.490392",
+        "status": "OPEN",
+        "severity": "HIGH",
+        "risk_score": 75,
+        "risk_level": "HIGH",
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "b320323251eb4c6d9aba9bdd2c0e39ab_high_test.encrypted",
+            "path": "/home/kali/rdrs/uploads/b320323251eb4c6d9aba9bdd2c0e39ab_high_test.encrypted",
+            "size": 32,
+            "sha256": "e0c9733462ee277c3aff833609ebe12a5d07c4199ee3ee4d95d22093403a70b1"
+        },
+        "risk_reasons": [
+            "Suspicious filename indicator",
+            "Suspicious ransomware-like extension",
+            "Ransomware-related text indicator"
+        ],
+        "analysis": {
+            "entropy": 4.078,
+            "suspicious": true
+        },
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821075841-b3cdcc",
+        "timestamp": "2026-08-21T07:58:41.079532",
+        "status": "OPEN",
+        "severity": "MEDIUM",
+        "risk_score": 40,
+        "risk_level": "MEDIUM",
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "374471ca31354d96a3b66d1d627aee97_medium_ransom.txt",
+            "path": "/home/kali/rdrs/uploads/374471ca31354d96a3b66d1d627aee97_medium_ransom.txt",
+            "size": 8,
+            "sha256": "61d520ccb74288c96bc1a2b20ea1c0d5a704776dd0164a396efec3ea7040349d"
+        },
+        "risk_reasons": [
+            "Suspicious filename indicator",
+            "Ransomware-related text indicator"
+        ],
+        "analysis": {
+            "entropy": 2.75,
+            "suspicious": true
+        },
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260821075831-e2743a",
+        "timestamp": "2026-08-21T07:58:31.410640",
+        "status": "OPEN",
+        "severity": "LOW",
+        "risk_score": 0,
+        "risk_level": "LOW",
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "2773f74a4ca84581945210fd9c958ad2_low_test.txt",
+            "path": "/home/kali/rdrs/uploads/2773f74a4ca84581945210fd9c958ad2_low_test.txt",
+            "size": 32,
+            "sha256": "3226741d265bdee173e3eaf1502a8d8ff5e9802ef0f9a44c2b06f3d165582b04"
+        },
+        "risk_reasons": [],
+        "analysis": {
+            "entropy": 3.781,
+            "suspicious": false
+        },
+        "response": {
+            "status": "no_action"
+        }
+    },
+    {
+        "incident_id": "RDRS-DEMO-QUARANTINED",
+        "timestamp": "2026-08-21T07:58:52.714745",
+        "status": "CONTAINED",
+        "severity": "LOW",
+        "risk_score": 10,
+        "risk_level": "LOW",
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "quarantine_demo.txt",
+            "path": "/home/kali/rdrs/quarantine/quarantine_demo.txt",
+            "size": 32,
+            "sha256": "demo-quarantine-sha256"
+        },
+        "analysis": {
+            "entropy": 3.7,
+            "suspicious": false
+        },
+        "risk_reasons": [
+            "File isolated for demonstration"
+        ],
+        "response": {
+            "status": "quarantined"
+        }
+    }
+]

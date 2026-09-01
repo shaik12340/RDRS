@@ -1,0 +1,114 @@
+import os
+from pathlib import Path
+from collections import Counter
+
+from app.core.security import calculate_sha256
+from app.database.database import load_baseline, save_baseline
+
+
+class RansomwareDetector:
+    def __init__(self, watch_directory: str):
+        self.watch_directory = Path(watch_directory)
+
+    def collect_files(self):
+        files = []
+
+        for root, _, filenames in os.walk(self.watch_directory):
+            for filename in filenames:
+                path = Path(root) / filename
+
+                try:
+                    stat = path.stat()
+                    file_hash = calculate_sha256(str(path))
+
+                    files.append({
+                        "name": filename,
+                        "path": str(path),
+                        "size": stat.st_size,
+                        "sha256": file_hash,
+                        "modified": stat.st_mtime
+                    })
+
+                except OSError:
+                    continue
+
+        return files
+
+    def create_baseline(self):
+        files = self.collect_files()
+
+        baseline = {
+            file["path"]: file["sha256"]
+            for file in files
+        }
+
+        save_baseline(baseline)
+
+        return {
+            "status": "success",
+            "message": "Baseline created",
+            "files_baselined": len(baseline)
+        }
+
+    def compare_baseline(self):
+        files = self.collect_files()
+        baseline = load_baseline()
+
+        changed = []
+        new_files = []
+
+        current_paths = set()
+
+        for file in files:
+            path = file["path"]
+            current_paths.add(path)
+
+            old_hash = baseline.get(path)
+
+            if old_hash is None:
+                new_files.append(file)
+            elif old_hash != file["sha256"]:
+                changed.append({
+                    "path": path,
+                    "old_hash": old_hash,
+                    "new_hash": file["sha256"]
+                })
+
+        deleted = [
+            path for path in baseline
+            if path not in current_paths
+        ]
+
+        return {
+            "status": "success",
+            "changed_files": changed,
+            "new_files": new_files,
+            "deleted_files": deleted,
+            "total_changes": (
+                len(changed) +
+                len(new_files) +
+                len(deleted)
+            )
+        }
+
+    def scan(self):
+        if not self.watch_directory.exists():
+            return {
+                "status": "error",
+                "message": "Directory does not exist"
+            }
+
+        files = self.collect_files()
+
+        extensions = Counter(
+            Path(file["name"]).suffix.lower()
+            for file in files
+        )
+
+        return {
+            "status": "success",
+            "directory": str(self.watch_directory),
+            "files_scanned": len(files),
+            "extensions": dict(extensions),
+            "files": files
+        }

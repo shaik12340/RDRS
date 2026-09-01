@@ -1,0 +1,19 @@
+{
+    "incident_id": "RDRS-20260821081751507408-feb064",
+    "timestamp": "2026-08-21T08:17:51.507408",
+    "status": "OPEN",
+    "severity": "LOW",
+    "risk_score": 10,
+    "risk_level": "LOW",
+    "event_type": "MODIFIED",
+    "file": {
+        "path": "test_data/rapid_test_1.txt",
+        "sha256": "81805cdb4dfcfbfaef2a29db5fe2b3761589724bc5854363c5b291d1097bc2bd"
+    },
+    "risk_reasons": [
+        "1 file(s) modified"
+    ],
+    "response": {
+        "status": "no_action"
+    }
+}

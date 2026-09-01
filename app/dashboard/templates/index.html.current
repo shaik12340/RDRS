@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RDRS Dashboard</title>
+
+<link rel="stylesheet" href="/dashboard/static/style.css">
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>🛡 RDRS</h2>
+
+<ul>
+<li class="active">Dashboard</li>
+<li>Incidents</li>
+<li>Quarantine</li>
+<li>Reports</li>
+</ul>
+
+</div>
+
+<div class="main">
+
+<div class="topbar">
+<h1>Ransomware Detection & Response System</h1>
+<div class="online">● ONLINE</div>
+</div>
+
+<div class="cards">
+
+<div class="card blue">
+<p>System Health</p>
+<h2 id="health">100%</h2>
+</div>
+
+<div class="card purple">
+<p>Critical Threats</p>
+<h2 id="risk">0</h2>
+</div>
+
+<div class="card orange">
+<p>Quarantined</p>
+<h2 id="quarantine">0</h2>
+</div>
+
+<div class="card green">
+<p>Total Incidents</p>
+<h2 id="incidents">0</h2>
+</div>
+
+</div>
+
+<div class="tablebox">
+
+<h2>Recent Incidents</h2>
+
+<table>
+
+<thead>
+<tr>
+<th>ID</th>
+<th>Risk</th>
+<th>Status</th>
+</tr>
+</thead>
+
+<tbody id="incidentTable">
+
+<tr>
+<td colspan="3">Loading...</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script src="/dashboard/static/app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+[
+    {
+        "incident_id": "RDRS-20260822051117446719-be6916",
+        "timestamp": "2026-08-22T05:11:17.446719",
+        "status": "CONTAINED",
+        "severity": "HIGH",
+        "risk_score": 75,
+        "risk_level": "HIGH",
+        "entropy": 4.469,
+        "suspicious": true,
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "rdrs-quarantine-details-unique-1787393438.encrypted",
+            "path": "rdrs-quarantine-details-unique-1787393438.encrypted",
+            "sha256": "b257bd1c4e27a43113b11e92c75b4843d2f393967880b56a5fe138cf84467d3f"
+        },
+        "risk_reasons": [
+            "Suspicious filename indicator",
+            "Suspicious ransomware-like extension",
+            "Ransomware-related text indicator"
+        ],
+        "response": {
+            "status": "quarantined",
+            "quarantine_path": "quarantine/20260822051117_tmpp4q1t2ju.encrypted",
+            "original_path": "/tmp/tmpp4q1t2ju.encrypted"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260822045354587763-36614b",
+        "timestamp": "2026-08-22T04:53:54.587763",
+        "status": "CONTAINED",
+        "severity": "CRITICAL",
+        "risk_score": 100,
+        "risk_level": "CRITICAL",
+        "entropy": 4.244,
+        "suspicious": true,
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "rdrs-critical-quarantine-test.encrypted",
+            "path": "rdrs-critical-quarantine-test.encrypted",
+            "sha256": "bacf598b8ccce4167d5c95a3cd2b7c9a7700b903e5cf299604d93e5abd01a324"
+        },
+        "risk_reasons": [
+            "Suspicious filename indicator",
+            "Suspicious ransomware-like extension",
+            "Ransomware-related text indicator"
+        ],
+        "response": {
+            "status": "quarantined"
+        }
+    },
+    {
+        "incident_id": "RDRS-20260822044314829335-673b62",
+        "timestamp": "2026-08-22T04:43:14.829335",
+        "status": "OPEN",
+        "severity": "CRITICAL",
+        "risk_score": 90,
+        "risk_level": "CRITICAL",
+        "entropy": 4.609,
+        "suspicious": true,
+        "event_type": "UPLOADED",
+        "file": {
+            "name": "web_ransomware_test.encrypted",
+            "path": "web_ransomware_test.encrypted",
+            "sha256": "609dacdc2cdd3561136d51e3ee35295289f91da8dd54cbd3d10ac7c90217b20a"
+        },
+        "risk_reasons": [
+            "Suspicious filename indicator",
+            "Suspicious ransomware-like extension",
+            "Ransomware-related text indicator"
+        ],
+        "response": {
+            "status": "no_action"
+        }
+    }
+]
