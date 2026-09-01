@@ -36,7 +36,7 @@ def calculate_sha256(file_path: Path):
 
 @router.delete("/incidents/clean")
 def clean_incidents():
-    incidents_file = Path("/tmp/incidents.json")
+    incidents_file = Path("data/incidents.json")
     quarantine_dir = Path("/tmp/quarantine")
 
     deleted_uploads = 0
