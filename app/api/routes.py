@@ -15,7 +15,7 @@ router = APIRouter(prefix="/api", tags=["RDRS API"])
 UPLOAD_DIR = Path("/tmp/uploads")
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
-TEST_DIR = Path("/home/kali/rdrs/test_data")
+TEST_DIR = Path("/tmp/test_data")
 
 detector = RansomwareDetector(str(TEST_DIR))
 response_engine = ResponseEngine()
@@ -36,8 +36,8 @@ def calculate_sha256(file_path: Path):
 
 @router.delete("/incidents/clean")
 def clean_incidents():
-    incidents_file = Path("/home/kali/rdrs/data/incidents.json")
-    quarantine_dir = Path("/home/kali/rdrs/quarantine")
+    incidents_file = Path("/tmp/incidents.json")
+    quarantine_dir = Path("/tmp/quarantine")
 
     deleted_uploads = 0
 
@@ -73,7 +73,7 @@ def clean_incidents():
 # QUARANTINE MANAGEMENT
 # ============================================================
 
-QUARANTINE_DIR = Path("/home/kali/rdrs/quarantine")
+QUARANTINE_DIR = Path("/tmp/quarantine")
 
 
 def _safe_quarantine_file(filename: str) -> Path:
